@@ -1,4 +1,5 @@
 set number
+set bg=dark
 set showcmd
 set incsearch
 set hlsearch
@@ -51,6 +52,5 @@ if has("gui_running") "only for gui sessions
 	endif
 
 	set gcr=sm:bar-Cursor-blink
-	set bg=dark
 	hi NORMAL guifg=#00C8FF guibg=black
 endif
