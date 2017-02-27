@@ -6,6 +6,7 @@ set hlsearch
 set autoindent
 set nocompatible
 set wrap
+set spelllang=en_us
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
