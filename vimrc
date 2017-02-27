@@ -6,7 +6,6 @@ set hlsearch
 set autoindent
 set nocompatible
 set wrap
-set linebreak
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
