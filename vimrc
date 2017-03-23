@@ -11,6 +11,7 @@ set textwidth=0
 set laststatus=2
 let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
+let g:airline_symbols_ascii = 1
 
 
 if has("win32") || has("win64")
