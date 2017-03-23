@@ -8,6 +8,10 @@ set nocompatible
 set wrap
 set spelllang=en_us
 set textwidth=0
+set laststatus=2
+let g:airline_skip_empty_sections = 1
+let g:airline_detect_spell = 1
+
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
@@ -54,4 +58,9 @@ if has("gui_running") "only for gui sessions
 
 	set gcr=sm:bar-Cursor-blink
 	hi NORMAL guifg=#00C8FF guibg=black
+
+elseif has("unix") && (system("cat /proc/version | grep -c Microsoft") == 1)
+	"checks for Bash on Windows, to manually set t_Co, only when no GUI is running
+	set t_Co=16
+
 endif
