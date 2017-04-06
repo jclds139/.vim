@@ -60,7 +60,7 @@ if has("gui_running") "only for gui sessions
 	set gcr=sm:bar-Cursor-blink
 	hi NORMAL guifg=#00C8FF guibg=black
 
-elseif has("unix") && (system("cat /proc/version | grep -c Microsoft") == 1 && system("cat/proc/version | grep -c 4.4.0") == 0)
+elseif has("unix") && (system("cat /proc/version | grep -cE 4\.3\.0.*Microsoft") == 1)
 	"checks for pre-Creators Update Bash on Windows, to manually set t_Co, only when no GUI is running
 	set t_Co=16
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
