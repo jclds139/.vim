@@ -13,6 +13,7 @@ let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 
+colorscheme elflord "should be built in
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
@@ -57,8 +58,9 @@ if has("gui_running") "only for gui sessions
 		set guifont=Anonymous\ Pro\ 9
 	endif
 
-	set gcr=sm:bar-Cursor-blink
-	hi NORMAL guifg=#00C8FF guibg=black
+	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
+	set guicursor=a:blinkwait400-blinkon400-blinkoff250,v:blinkoff0
+
 
 elseif has("unix") && (system("cat /proc/version | grep -cE 4\.3\.0.*Microsoft") == 1)
 	"checks for pre-Creators Update Bash on Windows, to manually set t_Co, only when no GUI is running
