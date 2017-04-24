@@ -10,7 +10,8 @@ runtime colors/default.vim
 
 let g:colors_name = "my-default"
 
-"set background=dark " for whatever reason, this does nothing
-
 highlight clear Normal
 highlight Normal guifg=#00c8ff guibg=black
+
+set background=dark " for whatever reason, this does nothing
+

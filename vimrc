@@ -13,8 +13,6 @@ let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 
-colorscheme elflord "should be built in
-
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
 	behave mswin
@@ -48,7 +46,8 @@ endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") "only for gui sessions
-
+	colorscheme cyberpunk
+	highlight Normal guifg=#00c8ff
 	if has("win32") || has("win64") || has("win16")
 		set guifont=Anonymous_Pro:h9,Courier_New:h9
 	elseif has("unix")
@@ -67,5 +66,8 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 4\.3\.0.*Microsoft")
 	set t_Co=16
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
-
+	colorscheme eldar
+else
+	colorscheme eldar
 endif
+
