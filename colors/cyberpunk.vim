@@ -16,7 +16,7 @@ let colors_name = "cyberpunk"
 
 " Cyberpunk theme colors {{{
 let s:colors = {
-    \ "cyberpunk-fg": "#dcdccc",
+    \ "cyberpunk-fg": "#00c8ff",
     \ "cyberpunk-bg-1": "#2b2b2b",
     \ "cyberpunk-bg-05": "#383838",
     \ "cyberpunk-bg": "#000000",
