@@ -9,6 +9,7 @@ set wrap
 set spelllang=en_us
 set textwidth=0
 set laststatus=2
+set confirm
 let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
@@ -58,12 +59,12 @@ if has("gui_running") "only for gui sessions
 	endif
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
-	set guicursor=a:blinkwait400-blinkon400-blinkoff250,v:blinkoff0
+	set guicursor+=a:blinkwait400-blinkon400-blinkoff250,v:blinkoff0
 
 
-elseif has("unix") && (system("cat /proc/version | grep -cE 4\.3\.0.*Microsoft") == 1)
+elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*3\.4.*3\.4.*Microsoft") == 1)
 	"checks for pre-Creators Update Bash on Windows, to manually set t_Co, only when no GUI is running
-	set t_Co=16
+	set t_Co=16 "override it to be 16
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme eldar
