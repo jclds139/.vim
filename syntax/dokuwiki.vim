@@ -29,6 +29,8 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 " Let tab keys always be expanded to spaces
 setlocal expandtab
+setlocal spell
+setlocal spelllang=en_us
 
 """ Patterns
 " Keywords
