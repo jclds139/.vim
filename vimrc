@@ -14,6 +14,10 @@ let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 
+let g:eldar_text = '#00C8FF'
+let g:eldar_cyan = '#507070'
+
+
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
@@ -48,7 +52,12 @@ endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") "only for gui sessions
-	colorscheme cyberpunk
+	"colorscheme cyberpunk
+	colorscheme eldar
+
+	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
+	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
+
 	if has("win32") || has("win64") || has("win16")
 		set guifont=Anonymous_Pro:h9,Courier_New:h9
 	elseif has("unix")
@@ -57,10 +66,6 @@ if has("gui_running") "only for gui sessions
 		endif
 		set guifont=Anonymous\ Pro\ 9
 	endif
-
-	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
-	set guicursor+=a:blinkwait400-blinkon400-blinkoff250,v:blinkoff0
-
 
 elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") == 1)
 	"checks for pre-Creators Update Bash on Windows, to manually set t_Co, only when no GUI is running
