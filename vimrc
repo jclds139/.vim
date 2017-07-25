@@ -16,6 +16,7 @@ let g:airline_symbols_ascii = 1
 
 let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
+let g:eldar_magenta = 'magenta'
 
 
 
