@@ -23,6 +23,7 @@ let g:eldar_magenta = 'magenta'
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
 	behave mswin
+	syntax on
 	
 	set diffexpr=MyDiff()
 	function MyDiff()
