@@ -10,6 +10,9 @@ set spelllang=en_us
 set textwidth=0
 set laststatus=2
 set confirm
+syntax on
+
+
 let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
@@ -23,7 +26,6 @@ let g:eldar_magenta = 'magenta'
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
 	behave mswin
-	syntax on
 	
 	set diffexpr=MyDiff()
 	function MyDiff()
