@@ -42,6 +42,13 @@
 " THE SOFTWARE.
 "
 " ---------------------------------------------------------
+" Customized by Jesse R Codling
+	" 'CTERMFG' = 'cyan' replaced with 'gray' or 'darkGray' to allow for 
+		" eldar_text = #00C8FF (including in term)
+	" defined in .vimrc:
+		" eldar_text = #00C8FF
+		" eldar_magenta = 'magneta'
+		" eldar_cyan = #507070 - makes a dark cyan gray to distinguish from eldar_text
 
 " Eldar is designed for dark backgrounds
 set background=dark
@@ -131,7 +138,7 @@ highlight! link VisualNOS Visual
 let  s:ColourAssignment['NonText']     =  {'GUIFG':  s:blue,      'CTERMFG':  'blue'}
 
 let  s:ColourAssignment['Todo']        =  {'GUIFG':  'Black',     'GUIBG':    s:yellow,  'CTERMBG':  'yellow'}
-let  s:ColourAssignment['Underlined']  =  {'GUIFG':  s:cyan,      'CTERMFG':  'cyan',    'GUI':      'Underline'}
+let  s:ColourAssignment['Underlined']  =  {'GUIFG':  s:cyan,      'CTERMFG':  'gray',    'GUI':      'Underline'}
 let  s:ColourAssignment['Error']       =  {'GUIFG':  s:red,       'GUIBG':    'Black',   'CTERMFG':  'red',        'GUI':  'Reverse,Bold'}
 let  s:ColourAssignment['ErrorMsg']    =  {'GUIFG':  s:red,       'GUIBG':    'White',   'CTERMFG':  'red',        'GUI':  'Reverse,Bold'}
 let  s:ColourAssignment['WarningMsg']  =  {'GUIFG':  s:red,       'CTERMFG':  'red'}
@@ -153,7 +160,7 @@ highlight! link Function Identifier
 
 " Comments
 " --------
-let  s:ColourAssignment['Comment']  =  {'GUIFG':  s:cyan,  'CTERMFG':  'cyan'}
+let  s:ColourAssignment['Comment']  =  {'GUIFG':  s:cyan,  'CTERMFG':  'darkgray'}
 highlight! link SpecialComment Special
 
 
