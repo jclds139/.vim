@@ -16,6 +16,8 @@ syntax on
 let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
