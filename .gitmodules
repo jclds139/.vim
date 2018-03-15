@@ -1,0 +1,3 @@
+[submodule "pack/vim-polyglot/opt"]
+	path = pack/vim-polyglot/opt
+	url = https://github.com/sheerun/vim-polyglot.git
