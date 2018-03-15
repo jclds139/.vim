@@ -1,3 +1,6 @@
 [submodule "pack/syntax/opt/polyglot"]
 	path = pack/syntax/opt/polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule "pack/syntax/start/vim-git"]
+	path = pack/syntax/start/vim-git
+	url = https://github.com/tpope/vim-git.git
