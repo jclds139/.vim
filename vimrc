@@ -83,3 +83,12 @@ else
 	colorscheme eldar
 endif
 
+"fixes for earlier (pre-8.0) versions of vim which dont have package management
+if (v:version < 800) "adds everything to rtp
+	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
+		let &runtimepath.=','.plugin "add it to the runtime path
+	endfor
+else "for vim 8.0 and later
+	packloadall "it just takes one command to do all that, and a better job of it to boot
+endif
+silent! helptags ALL
