@@ -23,7 +23,7 @@ let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
 let g:eldar_magenta = 'magenta'
 
-
+let &directory = $MYVIMRC[:-6] . 'swaps//'
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc

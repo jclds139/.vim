@@ -1,0 +1,4 @@
+#Ignore anything that could possible be a swapfile
+.*.s*
+*.s*
+#Includes files that aren't hidden, since they may not be in here
