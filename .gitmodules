@@ -10,6 +10,6 @@
 [submodule "pack/basics/start/fugitive"]
 	path = pack/basics/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "pack/basics/start/commentary"]
-	path = pack/basics/start/commentary
-	url = https://github.com/tpope/vim-commentary.git
+[submodule "pack/basics/start/tcomment"]
+	path = pack/basics/start/tcomment
+	url = https://github.com/tomtom/tcomment_vim
