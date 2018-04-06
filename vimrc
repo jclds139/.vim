@@ -1,4 +1,4 @@
-set number
+set number "duh
 set bg=dark
 set showcmd
 set incsearch
@@ -10,6 +10,7 @@ set spelllang=en_us
 set textwidth=0
 set laststatus=2
 set confirm
+set backspace=2 "allow generous backspacing on all platforms
 syntax on
 
 
