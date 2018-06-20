@@ -79,12 +79,12 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	set t_Co=16 "override it to be 16
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
-	colorscheme eldar
+	colorscheme harlequin
 else
-	colorscheme eldar
+	colorscheme harlequin
 endif
 
-"fixes for earlier (pre-8.0) versions of vim which dont have package management
+"fixes for earlier (pre-8.0) versions of vim which don't have package management
 if (v:version < 800) "adds everything to rtp
 	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
