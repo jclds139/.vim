@@ -30,6 +30,26 @@ let g:ycm_collect_identifiers_from_tags_files = 1
 
 let &directory = $MYVIMRC[:-6] . 'swaps//'
 
+" Auto Update timestamps (@updated:)
+" If buffer modified, update any 'Last modified: ' in the first 20 lines.
+" 'Last modified: ' can have up to 10 characters before (they are retained).
+" Restores cursor and window position using save_cursor variable.
+" param: leader contains the text preceeding the timestamp (e.g. 'Last Modified:', etc.)
+function! Timestamp(leader)
+  if &modified
+    let save_cursor = getpos(".")
+    let n = min([20, line("$")])
+    keepjumps exe '1,' . n . 's#^\(.\{,10}' . a:leader .' \).*#\1' .
+          \ strftime('%d %b %Y') . '#e'
+    call histdel('search', -1)
+    call setpos('.', save_cursor)
+  endif
+endfun
+
+autocmd BufWritePre * call Timestamp("@updated:")
+autocmd BufWritePre * call Timestamp("Last Modified:")
+
+
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
 	behave mswin
