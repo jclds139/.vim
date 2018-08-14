@@ -34,17 +34,17 @@ let &directory = $MYVIMRC[:-6] . 'swaps//'
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
 " 'Last modified: ' can have up to 10 characters before (they are retained).
 " Restores cursor and window position using save_cursor variable.
-" param: leader contains the text preceeding the timestamp (e.g. 'Last Modified:', etc.)
+	" param: leader contains the text preceeding the timestamp (e.g. 'Last Modified:', etc.)
 function! Timestamp(leader)
-  if &modified
-    let save_cursor = getpos(".")
-    let n = min([20, line("$")])
-    keepjumps exe '1,' . n . 's#^\(.\{,10}' . a:leader .' \).*#\1' .
-          \ strftime('%d %b %Y') . '#e'
-    call histdel('search', -1)
-    call setpos('.', save_cursor)
-  endif
-endfun
+	if &modified
+		let save_cursor = getpos(".")
+		let n = min([20, line("$")])
+		keepjumps exe '1,' . n . 's#^\(.\{,10}' . a:leader .' \).*#\1' .
+		\ strftime('%d %b %Y') . '#e'
+		call histdel('search', -1)
+		call setpos('.', save_cursor)
+	endif
+endfunction
 
 autocmd BufWritePre * call Timestamp("@updated:")
 autocmd BufWritePre * call Timestamp("Last Modified:")
@@ -53,33 +53,33 @@ autocmd BufWritePre * call Timestamp("Last Modified:")
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
 	behave mswin
-	
-	set diffexpr=MyDiff()
-	function MyDiff()
-	  let opt = '-a --binary '
-	  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-	  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-	  let arg1 = v:fname_in
-	  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-	  let arg2 = v:fname_new
-	  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-	  let arg3 = v:fname_out
-	  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-	  let eq = ''
-	  if $VIMRUNTIME =~ ' '
-	    if &sh =~ '\<cmd'
-	      let cmd = '""' . $VIMRUNTIME . '\diff"'
-	      let eq = '"'
-	    else
-	      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-	    endif
-	  else
-	    let cmd = $VIMRUNTIME . '\diff'
-	  endif
-	  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-	endfunction
 
-endif
+	set diffexpr=MyDiff()
+function MyDiff()
+	let opt = '-a --binary '
+	if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+	if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+	let arg1 = v:fname_in
+	if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+	let arg2 = v:fname_new
+	if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+	let arg3 = v:fname_out
+	if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+	let eq = ''
+	if $VIMRUNTIME =~ ' '
+	if &sh =~ '\<cmd'
+	let cmd = '""' . $VIMRUNTIME . '\diff"'
+	let eq = '"'
+	else
+	let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+			endif
+			else
+			let cmd = $VIMRUNTIME . '\diff'
+			endif
+			silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+			endfunction
+
+			endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") "only for gui sessions
@@ -90,7 +90,7 @@ if has("gui_running") "only for gui sessions
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 
 	if has("win32") || has("win64") || has("win16")
-		set guifont=Anonymous_Pro:h9,Courier_New:h9
+			set guifont=Anonymous_Pro:h9,Courier_New:h9
 	elseif has("unix")
 		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
