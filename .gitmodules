@@ -10,3 +10,6 @@
 [submodule "pack/basics/start/tcomment"]
 	path = pack/basics/start/tcomment
 	url = https://github.com/tomtom/tcomment_vim
+[submodule "pack/syntax/start/bro"]
+	path = pack/syntax/start/bro
+	url = https://github.com/mephux/bro.vim.git
