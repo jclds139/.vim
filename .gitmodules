@@ -13,3 +13,6 @@
 [submodule "pack/syntax/start/bro"]
 	path = pack/syntax/start/bro
 	url = https://github.com/mephux/bro.vim.git
+[submodule "pack/syntax/start/systemverilog"]
+	path = pack/syntax/start/systemverilog
+	url = https://github.com/vim-scripts/systemverilog.vim.git
