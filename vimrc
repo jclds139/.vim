@@ -12,6 +12,7 @@ set laststatus=2
 set confirm
 set backspace=2 "allow generous backspacing on all platforms
 syntax on
+filetype plugin on
 
 
 let g:airline_skip_empty_sections = 1
@@ -19,6 +20,8 @@ let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+let g:tiddlywiki_autoupdate = 1
 
 let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
@@ -97,7 +100,17 @@ if has("gui_running") "only for gui sessions
 		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
 		endif
-		set guifont=Anonymous\ Pro\ 9
+
+		"auto display scaling based on xrandr
+		let w_px = system("xrandr | grep primary | awk -F \" |x\" '{print $4}'")
+		let w_mm = system("xrandr | grep primary | awk -F \" |m\" '{print $(NF-6)}'")
+		if type(w_px/1) == type(0) && type(w_mm/1) == type(0)
+			let font_height=floor(9*(w_px/(w_mm/25.4))/96)-1
+		else
+			let font_height=9
+		endif
+
+		exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
 	endif
 
 elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") == 1)
