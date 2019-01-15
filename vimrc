@@ -105,7 +105,7 @@ if has("gui_running") "only for gui sessions
 		let w_px = system("xrandr | grep primary | awk -F \" |x\" '{print $4}'")
 		let w_mm = system("xrandr | grep primary | awk -F \" |m\" '{print $(NF-6)}'")
 		if type(w_px/1) == type(0) && type(w_mm/1) == type(0)
-			let font_height=floor(9*(w_px/(w_mm/25.4))/96)-1
+			let font_height=(9*(w_px/(w_mm/25.4))/96)
 		else
 			let font_height=9
 		endif
