@@ -104,7 +104,11 @@ if has("gui_running") "only for gui sessions
 		"auto display scaling based on xrandr
 		let w_px = system("xrandr | grep primary | awk -F \" |x\" '{print $4}'")
 		let w_mm = system("xrandr | grep primary | awk -F \" |m\" '{print $(NF-6)}'")
-		let dpi = w_px/(w_mm/25.4)
+		if (w_mm <= 0)
+			let dpi = 0
+		else
+			let dpi = w_px/(w_mm/25.4)
+		endif
 		unlet w_px
 		unlet w_mm
 		if type(dpi) == type(1.0) && dpi > 0
