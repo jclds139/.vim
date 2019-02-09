@@ -19,6 +19,3 @@
 [submodule "pack/syntax/start/tiddlywiki"]
 	path = pack/syntax/start/tiddlywiki
 	url = https://github.com/sukima/vim-tiddlywiki.git
-[submodule "pack/basics/opt/ghost-text"]
-	path = pack/basics/opt/ghost-text
-	url = https://github.com/pandysong/ghost-text.vim.git
