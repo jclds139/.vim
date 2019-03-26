@@ -112,7 +112,7 @@ if has("gui_running") "only for gui sessions
 		unlet w_px
 		unlet w_mm
 		if type(dpi) == type(1.0) && dpi > 0
-			let font_height=9+floor((dpi-96)/20)
+			let font_height=9+trunc((dpi-96)/20)
 		else
 			let font_height=9
 		endif
