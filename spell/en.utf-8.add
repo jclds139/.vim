@@ -2,3 +2,8 @@ PID
 Simulink
 EE
 HW
+linearize
+Jacobian
+Misprediction
+misprediction
+pipelining

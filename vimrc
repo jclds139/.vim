@@ -51,7 +51,7 @@ function! Timestamp(leader)
 	endif
 endfunction
 
-autocmd BufWritePre * call Timestamp("@updated:")
+autocmd BufWritePre * call Timestamp("[uU]pdated:")
 autocmd BufWritePre * call Timestamp("Last Modified:")
 
 
