@@ -19,3 +19,6 @@
 [submodule "pack/syntax/start/tiddlywiki"]
 	path = pack/syntax/start/tiddlywiki
 	url = https://github.com/dnebauer/vim-tiddlywiki-ftplugin
+[submodule "pack/syntax/opt/ycm"]
+	path = pack/syntax/opt/ycm
+	url = https://github.com/Valloric/YouCompleteMe.git
