@@ -31,6 +31,10 @@ let g:eldar_magenta = 'magenta'
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
 
+"LaTeX Options, for when LaTeX suite is enabled
+let g:tex_flavor='latex'
+set shellslash
+
 let &directory = $MYVIMRC[:-6] . 'swaps//'
 
 set tags=./tags; "search upward for the tags file, and use its directory

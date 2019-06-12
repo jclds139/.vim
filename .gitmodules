@@ -22,3 +22,6 @@
 [submodule "pack/syntax/opt/ycm"]
 	path = pack/syntax/opt/ycm
 	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "pack/syntax/opt/vim-latex"]
+	path = pack/syntax/opt/vim-latex
+	url = https://github.com/vim-latex/vim-latex.git
