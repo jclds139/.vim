@@ -31,3 +31,6 @@
 [submodule "pack/basics/start/surround"]
 	path = pack/basics/start/surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "pack/syntax/opt/syntastic"]
+	path = pack/syntax/opt/syntastic
+	url = https://github.com/scrooloose/syntastic.git

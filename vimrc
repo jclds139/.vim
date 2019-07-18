@@ -23,9 +23,16 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 let g:tiddlywiki_autoupdate = 1
 
+"Eldar Custom Colors
 let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
 let g:eldar_magenta = 'magenta'
+
+"Syntastic Recommended Options
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "YCM options, if I enable YCM
 let g:ycm_confirm_extra_conf = 0
