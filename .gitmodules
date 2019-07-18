@@ -25,3 +25,6 @@
 [submodule "pack/basics/opt/nerdtree"]
 	path = pack/basics/opt/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+[submodule "pack/basics/start/supertab"]
+	path = pack/basics/start/supertab
+	url = https://github.com/ervandew/supertab.git
