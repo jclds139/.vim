@@ -48,3 +48,5 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+pack/syntax/opt/ycm/
