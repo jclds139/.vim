@@ -28,3 +28,6 @@
 [submodule "pack/basics/start/supertab"]
 	path = pack/basics/start/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "pack/basics/start/surround"]
+	path = pack/basics/start/surround
+	url = https://github.com/tpope/vim-surround.git
