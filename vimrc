@@ -19,7 +19,7 @@ let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:tiddlywiki_autoupdate = 1
 
@@ -37,6 +37,10 @@ let g:syntastic_check_on_wq = 0
 "YCM options, if I enable YCM
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
+
+"SuperTab Settings
+let g:SuperTabDefaultCompletionType = "context"
+set isfname+=32 "add spaces to filename completion
 
 "LaTeX Options, for when LaTeX suite is enabled
 let g:tex_flavor='latex'

@@ -50,3 +50,4 @@ Session.vim
 tags
 
 pack/syntax/opt/ycm/
+spell/*.add.spl
