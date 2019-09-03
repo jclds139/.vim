@@ -35,6 +35,6 @@
 	path = pack/syntax/opt/syntastic
 	url = https://github.com/scrooloose/syntastic.git
 [submodule "coc.nvim"]
-	path = pack/syntax/opt/coc
+	path = pack/syntax/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
