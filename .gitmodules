@@ -26,7 +26,7 @@
 	path = pack/basics/opt/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "pack/basics/start/supertab"]
-	path = pack/basics/start/supertab
+	path = pack/basics/opt/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "pack/basics/start/surround"]
 	path = pack/basics/start/surround
@@ -34,3 +34,7 @@
 [submodule "pack/syntax/opt/syntastic"]
 	path = pack/syntax/opt/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "coc.nvim"]
+	path = pack/syntax/opt/coc
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release

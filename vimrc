@@ -34,6 +34,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+"CoC Options, which is going to be my standby instead of SuperTab/Syntastic
+let g:coc_global_extensions = "coc-json coc-snippets coc-python coc-svg coc-java coc-dictionary coc-tag coc-word coc-java"
+
 "YCM options, if I enable YCM
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
@@ -110,7 +113,7 @@ if has("gui_running") "only for gui sessions
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 
 	if has("win32") || has("win64") || has("win16")
-		set guifont=Anonymous_Pro:h9,Courier_New:h9
+		set guifont=Anonymous_Pro:h9,Courier_New:h9,Courier:h9
 	elseif has("unix")
 		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
