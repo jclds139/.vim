@@ -4,7 +4,6 @@ EE
 HW
 linearize
 Jacobian
-Misprediction
 misprediction
 pipelining
 translationally

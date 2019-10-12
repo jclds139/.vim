@@ -38,3 +38,6 @@
 	path = pack/syntax/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
+[submodule "pack/syntax/start/vim-matlab"]
+	path = pack/syntax/start/vim-matlab
+	url = https://github.com/andymass/vim-matlab
