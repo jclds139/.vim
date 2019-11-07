@@ -1,39 +1,51 @@
 [submodule "pack/syntax/opt/polyglot"]
 	path = pack/syntax/start/polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+	branch = master
 [submodule "pack/basics/start/airline"]
 	path = pack/basics/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
+	branch = master
 [submodule "pack/basics/start/fugitive"]
 	path = pack/basics/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+	branch = master
 [submodule "pack/basics/start/tcomment"]
 	path = pack/basics/start/tcomment
 	url = https://github.com/tomtom/tcomment_vim
+	branch = master
 [submodule "pack/syntax/start/bro"]
 	path = pack/syntax/start/bro
 	url = https://github.com/mephux/bro.vim.git
+	branch = master
 [submodule "pack/syntax/start/systemverilog"]
 	path = pack/syntax/start/systemverilog
 	url = https://github.com/vim-scripts/systemverilog.vim.git
+	branch = master
 [submodule "pack/syntax/start/tiddlywiki"]
 	path = pack/syntax/start/tiddlywiki
 	url = https://github.com/dnebauer/vim-tiddlywiki-ftplugin
+	branch = master
 [submodule "pack/syntax/opt/vim-latex"]
 	path = pack/syntax/opt/vim-latex
 	url = https://github.com/vim-latex/vim-latex.git
+	branch = master
 [submodule "pack/basics/opt/nerdtree"]
 	path = pack/basics/opt/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
+	branch = master
 [submodule "pack/basics/start/supertab"]
 	path = pack/basics/opt/supertab
 	url = https://github.com/ervandew/supertab.git
+	branch = master
 [submodule "pack/basics/start/surround"]
 	path = pack/basics/start/surround
 	url = https://github.com/tpope/vim-surround.git
+	branch = master
 [submodule "pack/syntax/opt/syntastic"]
 	path = pack/syntax/opt/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+	branch = master
 [submodule "coc.nvim"]
 	path = pack/syntax/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
@@ -41,3 +53,7 @@
 [submodule "pack/syntax/start/vim-matlab"]
 	path = pack/syntax/start/vim-matlab
 	url = https://github.com/andymass/vim-matlab
+	branch = master
+[submodule "pack/syntax/start/plantuml"]
+	path = pack/syntax/start/plantuml
+	url = https://github.com/aklt/plantuml-syntax.git

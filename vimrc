@@ -38,6 +38,10 @@ let g:syntastic_check_on_wq = 0
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
 
+"PlantUML Compile Options
+let g:plantuml_set_makeprg=1
+let g:plantuml_executable_script="plantuml -tsvg"
+
 "SuperTab Settings
 let g:SuperTabDefaultCompletionType = "context"
 set isfname+=32 "add spaces to filename completion
@@ -147,6 +151,9 @@ else
 	colorscheme harlequin
 endif
 
+"gui base color override
+highlight Normal guifg=#00C8FF
+
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
 if (v:version < 800) "adds everything to rtp
 	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
@@ -155,6 +162,13 @@ if (v:version < 800) "adds everything to rtp
 else "for vim 8.0 and later
 	packloadall "it just takes one command to do all that, and a better job of it to boot
 endif
+
+"F5 Compiling - especially handy for linting and PlantUML - but don't override
+	"plugins' mappings
+nnoremap <F5> :w<CR> :silent make<CR>
+inoremap <F5> <Esc>:w<CR>:silent make<CR>
+vnoremap <F5> :<C-U>:w<CR>:silent make<CR
+
 
 "extensions setup for CoC
 if exists(":CocInfo")
