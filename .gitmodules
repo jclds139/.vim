@@ -42,10 +42,6 @@
 	path = pack/basics/start/surround
 	url = https://github.com/tpope/vim-surround.git
 	branch = master
-[submodule "pack/syntax/opt/syntastic"]
-	path = pack/syntax/opt/syntastic
-	url = https://github.com/scrooloose/syntastic.git
-	branch = master
 [submodule "coc.nvim"]
 	path = pack/syntax/start/coc
 	url = https://github.com/neoclide/coc.nvim.git

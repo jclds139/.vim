@@ -11,6 +11,7 @@ set textwidth=0
 set laststatus=2
 set confirm
 set backspace=2 "allow generous backspacing on all platforms
+set mouse=a "enable mouse by default
 syntax on
 filetype plugin on
 
@@ -28,29 +29,25 @@ let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
 let g:eldar_magenta = 'magenta'
 
-"Syntastic Recommended Options
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"YCM options, if I enable YCM
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
-
 "PlantUML Compile Options
 let g:plantuml_set_makeprg=1
 let g:plantuml_executable_script="plantuml -tsvg"
-
-"SuperTab Settings
-let g:SuperTabDefaultCompletionType = "context"
-set isfname+=32 "add spaces to filename completion
 
 "LaTeX Options, for when LaTeX suite is enabled
 let g:tex_flavor='latex'
 set shellslash
 
-let &directory = $MYVIMRC[:-6] . 'swaps//'
+if has('nvim')
+	"cut off the 'init.vim'
+	let &directory = $MYVIMRC[:-9] . 'swaps//'
+	
+	"neovim support cursor spec
+	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
+	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
+else
+	"cut off just 'vimrc
+	let &directory = $MYVIMRC[:-6] . 'swaps//'
+endif
 
 set tags=./tags; "search upward for the tags file, and use its directory
 
@@ -106,7 +103,7 @@ if has("win32") || has("win64")
 endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
-if has("gui_running") "only for gui sessions
+if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	"colorscheme cyberpunk
 	colorscheme eldar
 
@@ -147,6 +144,8 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
+elseif has('nvim')
+	colorscheme eldar
 else
 	colorscheme harlequin
 endif
