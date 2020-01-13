@@ -117,23 +117,67 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
 		endif
 
-		"auto display scaling based on xrandr
-		let w_px = system("xrandr | grep primary | awk -F \" |x\" '{print $4}'")
-		let w_mm = system("xrandr | grep primary | awk -F \" |m\" '{print $(NF-6)}'")
-		if (w_mm <= 0)
+		"auto display scaling
+		if executable("xdpyinfo") "read dpi directly from the Xserver
+			let dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]|x\" '{print $3}'")
+			let dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]|x\" '{print $4}'")
+			let dpi = (dpi_x+dpi_y)/2
+			unlet dpi_x
+			unlet dpi_y
+		elseif executable("xrandr") "calculate from xrandr
+			let w_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $4}'")
+			let h_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $5}'")
+			let w_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-5)}'")
+			let h_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-1)}'")
+
+			if (w_mm <= 0)
+				let dpi_w = 0
+			else
+				let dpi_w = w_px/(w_mm/25.4)
+			endif
+			unlet w_px
+			unlet w_mm
+
+			if (h_mm <= 0)
+				let dpi_h = 0
+			else
+				let dpi_h = h_px/(h_mm/25.4)
+			endif
+			unlet w_px
+			unlet w_mm
+			
+			if (dpi_w == 0)
+				let dpi_w = dpi_h
+			elseif (dpi_h == 0)
+				let dpi_h = dpi_w
+			endif
+
+			if (dpi_w == 0) "both are 0
+				let dpi = 0
+			else
+				let dpi = (dpi_h+dpi_w)/2
+			endif
+		else
 			let dpi = 0
-		else
-			let dpi = w_px/(w_mm/25.4)
-		endif
-		unlet w_px
-		unlet w_mm
-		if type(dpi) == type(1.0) && dpi > 0
-			let font_height=9+trunc((dpi-96)/20)
-		else
-			let font_height=9
 		endif
 
-		exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
+		if type(dpi) == type(1.0) && dpi > 0
+			let font_height=11+trunc((dpi-96)/20)
+		else
+			let font_height=11
+		endif
+
+		if has("nvim")
+			if exists('g:GtkGuiLoaded') "for neovim-gtk
+				call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(font_height) )
+				call rpcnotify(1, 'Gui', 'Tabline', 0)
+				call rpcnotify(1, 'Gui', 'Popupmenu', 0)
+			else "for nvim-qt
+				exe ':set guifont=Anonymous\ Pro:h' . string(font_height)
+			endif
+		else
+			exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
+		endif
 		unlet font_height
 		unlet dpi
 	endif
