@@ -53,3 +53,6 @@
 [submodule "pack/syntax/start/plantuml"]
 	path = pack/syntax/start/plantuml
 	url = https://github.com/aklt/plantuml-syntax.git
+[submodule "pack/basics/opt/firenvim"]
+	path = pack/basics/opt/firenvim
+	url = https://github.com/glacambre/firenvim.git
