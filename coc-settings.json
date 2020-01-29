@@ -23,9 +23,27 @@
 		}
 	},
 	"java.home" : "/usr/lib/jvm/default/",
+	"diagnostic-languageserver.linters": {
+		"mlint" :{
+			"command": "/home/jesse/src/scripts/mlint",
+			"isStdout": false,
+			"isStderr": true,
+			"debounce": 100,
+			"formatPattern": [
+				"^L \\(\\d\\+\\) (C \\([0-9-]\\+\\)): \\([A-Z]\\+\\): \\(.\\+\\)$" ,
+				{ "column": 2, "line": 1, "message": [4]}
+
+			],
+			"sourceName": "mlint"
+
+		}
+	},
 	"diagnostic-languageserver.filetypes": {
 		"tiddlywiki": [ "write-good","languagetool"],
 		"tex": [ "write-good","languagetool"],
-		"latex": [ "write-good","languagetool"]
+		"latex": [ "write-good","languagetool"],
+		"bash": [ "shellcheck" ],
+		"sh": [ "shellcheck" ],
+		"matlab": [ "mlint" ]
 	}
 }
