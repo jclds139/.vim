@@ -119,8 +119,8 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 
 		"auto display scaling
 		if executable("xdpyinfo") "read dpi directly from the Xserver
-			let dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]|x\" '{print $3}'")
-			let dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]|x\" '{print $4}'")
+			let dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $3}'")
+			let dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $4}'")
 			let dpi = (dpi_x+dpi_y)/2
 			unlet dpi_x
 			unlet dpi_y
@@ -188,8 +188,16 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"the old Windows console (and so the Bash terminal) only had the standard 16 colors
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
-elseif has('nvim')
-	colorscheme eldar
+elseif has("nvim")
+	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
+	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
+
+	if ($COLORTERM == "truecolor" || has("termguicolors"))
+		set termguicolors
+		colorscheme eldar
+	else
+		colorscheme harlequin
+	endif
 else
 	colorscheme harlequin
 endif
