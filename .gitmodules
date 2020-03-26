@@ -48,7 +48,7 @@
 	branch = release
 [submodule "pack/syntax/start/vim-matlab"]
 	path = pack/syntax/start/vim-matlab
-	url = https://github.com/andymass/vim-matlab
+	url = https://github.com/jclds139/vim-matlab.git
 	branch = master
 [submodule "pack/syntax/start/plantuml"]
 	path = pack/syntax/start/plantuml
