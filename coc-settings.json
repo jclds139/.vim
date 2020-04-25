@@ -2,24 +2,24 @@
 	"languageserver": {
 		"ccls": {
 			"command": "ccls",
-				"filetypes": [
+			"filetypes": [
 				"c",
 				"cpp",
 				"objc",
 				"objcpp"
-				],
-				"rootPatterns": [
-					".ccls",
+			],
+			"rootPatterns": [
+				".ccls",
 				"compile_commands.json",
 				".vim/",
 				".git/",
 				".hg/"
-				],
-				"initializationOptions": {
-					"cache": {
-						"directory": "/tmp/ccls"
-					}
+			],
+			"initializationOptions": {
+				"cache": {
+					"directory": "/tmp/ccls"
 				}
+			}
 		}
 	},
 	"java.home" : "/usr/lib/jvm/default/",
@@ -27,5 +27,8 @@
 		"tiddlywiki": [ "write-good","languagetool"],
 		"tex": [ "write-good","languagetool"],
 		"latex": [ "write-good","languagetool"]
-	}
+	},
+	"python.linting.pylintArgs": [
+		"--generated-members=numpy.*,torch.*"
+	]
 }
