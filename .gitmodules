@@ -1,7 +1,3 @@
-[submodule "pack/syntax/opt/polyglot"]
-	path = pack/syntax/start/polyglot
-	url = https://github.com/sheerun/vim-polyglot.git
-	branch = master
 [submodule "pack/basics/start/airline"]
 	path = pack/basics/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
@@ -53,3 +49,6 @@
 [submodule "pack/syntax/start/plantuml"]
 	path = pack/syntax/start/plantuml
 	url = https://github.com/aklt/plantuml-syntax.git
+[submodule "pack/syntax/start/systemd"]
+	path = pack/syntax/start/systemd
+	url = https://github.com/Matt-Deacalion/vim-systemd-syntax.git
