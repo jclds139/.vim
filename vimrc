@@ -73,7 +73,7 @@ autocmd BufWritePre * call Timestamp("Last Modified:")
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
-	behave mswin
+	" behave mswin "- this does things I don't like
 
 	set diffexpr=MyDiff()
 	function MyDiff()
@@ -111,7 +111,7 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 
 	if has("win32") || has("win64") || has("win16")
-		set guifont=Anonymous_Pro:h9,Courier_New:h9,Courier:h9
+		set guifont=Anonymous_Pro:h11,Courier_New:h11,Courier:h11
 	elseif has("unix")
 		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
