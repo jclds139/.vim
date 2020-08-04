@@ -24,9 +24,82 @@
 	},
 	"java.home" : "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
-		"tiddlywiki": [ "write-good","languagetool"],
-		"tex": [ "write-good","languagetool"],
-		"latex": [ "write-good","languagetool"]
+		"tiddlywiki": [ "proselint"],
+		"tex": ["textidote", "proselint", "alex" ],
+		"latex": ["textidote", "proselint", "alex" ],
+		"markdown": ["textidote", "proselint", "alex" ]
+	},
+	"diagnostic-languageserver.linters": {
+		"proselint": {
+			"command": "proselint",
+			"isStdout": true,
+			"isStderr": false,
+			"debounce": 100,
+			"args": ["-"],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "proselint",
+			"formatLines": 1,
+			"formatPattern": [
+				"^[^:]+:(\\d+):(\\d+):(\\s)(.*)$",
+				{
+					"line": 1,
+					"column": 2,
+					"security": 3,
+					"message": 4
+				}
+			],
+			"securities": {
+				" ": "info"
+			}
+		},
+		"textidote": {
+
+			"command": "textidote",
+			"debounce": 500,
+			"args": ["--check", "en_US", "--output", "singleline"],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "textidote",
+			"formatLines": 1,
+			"formatPattern": [
+				"^[^ ]+?\\(L(\\d+)C(\\d+)-L(\\d+)C(\\d+)\\)[^:]*?:(.*)\".*\"(\\r|\\n)*$",
+				{
+					"line": 1,
+					"column": 2,
+					"endLine": 3,
+					"endColumn": 4,
+					"message": 5
+				}
+			]
+		},
+
+		"alex": {
+
+			"command": "alexjs",
+			"debounce": 200,
+			"isStderr": true,
+			"args": ["--stdin"],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "alex.js",
+			"formatLines": 1,
+			"formatPattern": [
+				"^\\s*(\\d+):(\\d+)-(\\d+):(\\d+)\\s{2}([a-z]+)\\s{2}(.*?)\\s{2,}([a-z-]+)\\s{2,}([a-z-]+)$",
+				{
+					"line": 1,
+					"column": 2,
+					"endLine": 3,
+					"endColumn": 4,
+					"security" : 5,
+					"message": 6
+				}
+			],
+			"securities" : {
+				"warning": "warning",
+				"error": "error"
+			}
+		}
 	},
 	"python.linting.pylintArgs": [
 		"--generated-members=numpy.*,torch.*"
