@@ -52,3 +52,9 @@
 [submodule "pack/syntax/start/systemd"]
 	path = pack/syntax/start/systemd
 	url = https://github.com/Matt-Deacalion/vim-systemd-syntax.git
+[submodule "pack/syntax/start/vim-python-pep8-indent"]
+	path = pack/syntax/start/vim-python-pep8-indent
+	url = https://github.com/Vimjas/vim-python-pep8-indent
+[submodule "pack/syntax/start/python-syntax"]
+	path = pack/syntax/start/python-syntax
+	url = https://github.com/vim-python/python-syntax.git
