@@ -58,3 +58,6 @@
 [submodule "pack/syntax/start/python-syntax"]
 	path = pack/syntax/start/python-syntax
 	url = https://github.com/vim-python/python-syntax.git
+[submodule "pack/syntax/start/graphviz"]
+	path = pack/syntax/start/graphviz
+	url = https://github.com/liuchengxu/graphviz.vim.git
