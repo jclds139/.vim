@@ -6,7 +6,8 @@
 				"c",
 				"cpp",
 				"objc",
-				"objcpp"
+				"objcpp",
+				"arduino"
 			],
 			"rootPatterns": [
 				".ccls",
