@@ -107,11 +107,25 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	"colorscheme cyberpunk
 	colorscheme eldar
 
+	function NvimFont(height)
+			if exists('g:GtkGuiLoaded') "for neovim-gtk
+				call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
+				call rpcnotify(1, 'Gui', 'Tabline', 0)
+				call rpcnotify(1, 'Gui', 'Popupmenu', 0)
+			else "for nvim-qt
+				exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
+			endif
+	endfunction
+
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 
 	if has("win32") || has("win64") || has("win16")
-		set guifont=Anonymous_Pro:h11,Courier_New:h11,Courier:h11
+		if has("nvim")
+			call NvimFont(14)
+		else
+			set guifont=Anonymous_Pro:h12,Courier_New:h12,Courier:h12
+		endif
 	elseif has("unix")
 		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
@@ -168,13 +182,7 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 		endif
 
 		if has("nvim")
-			if exists('g:GtkGuiLoaded') "for neovim-gtk
-				call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(font_height) )
-				call rpcnotify(1, 'Gui', 'Tabline', 0)
-				call rpcnotify(1, 'Gui', 'Popupmenu', 0)
-			else "for nvim-qt
-				exe ':set guifont=Anonymous\ Pro:h' . string(font_height)
-			endif
+			call NvimFont(font_height)
 		else
 			exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
 		endif
