@@ -61,3 +61,6 @@
 [submodule "pack/syntax/start/graphviz"]
 	path = pack/syntax/start/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
+[submodule "pack/basics/start/firenvim"]
+	path = pack/basics/start/firenvim
+	url = https://github.com/glacambre/firenvim.git

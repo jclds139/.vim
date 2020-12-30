@@ -332,4 +332,21 @@ if exists(":CocInfo")
 	nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 endif
 
+if exists('g:started_by_firenvim')
+	let g:firenvim_config = { 
+		\ 'globalSettings': {
+			\ 'alt': 'all',
+		\  },
+		\ 'localSettings': {
+			\ '.*': {
+				\ 'content': 'text',
+				\ 'priority': 0,
+				\ 'takeover': 'never'
+			\ },
+		\ }
+	\ }
+
+	au BufEnter localhost:8080*.txt set filetype=tiddlywiki spell linebreak
+endif
+
 silent! helptags ALL
