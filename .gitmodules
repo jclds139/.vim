@@ -64,3 +64,6 @@
 [submodule "pack/basics/start/firenvim"]
 	path = pack/basics/start/firenvim
 	url = https://github.com/glacambre/firenvim.git
+[submodule "pack/syntax/start/eldar"]
+	path = pack/syntax/start/eldar
+	url = https://github.com/agude/vim-eldar.git
