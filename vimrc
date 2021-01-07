@@ -40,7 +40,7 @@ set shellslash
 if has('nvim')
 	"cut off the 'init.vim'
 	let &directory = $MYVIMRC[:-9] . 'swaps//'
-	
+
 	"neovim support cursor spec
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -159,7 +159,7 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 			endif
 			unlet w_px
 			unlet w_mm
-			
+
 			if (dpi_w == 0)
 				let dpi_w = dpi_h
 			elseif (dpi_h == 0)
@@ -348,6 +348,11 @@ if exists('g:started_by_firenvim')
 	\ }
 
 	au BufEnter localhost:8080*.txt set filetype=tiddlywiki spell linebreak
+endif
+
+" autoload firenvim if needed
+if exists('g:started_by_firenvim')
+	packadd firenvim
 endif
 
 silent! helptags ALL
