@@ -61,3 +61,6 @@
 [submodule "pack/syntax/start/graphviz"]
 	path = pack/syntax/start/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
+[submodule "pack/syntax/start/eldar"]
+	path = pack/syntax/start/eldar
+	url = https://github.com/agude/vim-eldar.git
