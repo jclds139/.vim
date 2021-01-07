@@ -341,7 +341,8 @@ if exists('g:started_by_firenvim')
 			\ '.*': {
 				\ 'content': 'text',
 				\ 'priority': 0,
-				\ 'takeover': 'never'
+				\ 'takeover': 'never',
+				\ 'selector': 'textarea,input'
 			\ },
 		\ }
 	\ }
