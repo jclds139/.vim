@@ -67,3 +67,6 @@
 [submodule "pack/syntax/start/eldar"]
 	path = pack/syntax/start/eldar
 	url = https://github.com/agude/vim-eldar.git
+[submodule "pack/syntax/start/medic_chalk"]
+	path = pack/syntax/start/medic_chalk
+	url = https://github.com/ParamagicDev/vim-medic_chalk.git

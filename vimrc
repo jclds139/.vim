@@ -347,12 +347,11 @@ if exists('g:started_by_firenvim')
 		\ }
 	\ }
 
-	au BufEnter localhost:8080*.txt set filetype=tiddlywiki spell linebreak
-endif
+	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
 
-" autoload firenvim if needed
-if exists('g:started_by_firenvim')
-	packadd firenvim
+	colorscheme archman
+
+	set guifont=Anonymous_Pro:h13
 endif
 
 silent! helptags ALL
