@@ -351,6 +351,8 @@ if exists('g:started_by_firenvim')
 
 	colorscheme archman
 
+	exe "set lines=" . trim(string(round(&lines*10/13)), '.0')
+	exe "set columns=" . trim(string(round(&columns*10/13)), '.0')
 	set guifont=Anonymous_Pro:h13
 endif
 
