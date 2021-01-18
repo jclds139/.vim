@@ -231,8 +231,19 @@ vnoremap <F5> :<C-U>:w<CR>:silent make<CR
 
 "extensions setup for CoC
 if exists(":CocInfo")
-	"CocInstall coc-json coc-snippets coc-python coc-svg coc-dictionary coc-tag coc-word coc-json
-		"This shouldn't be run on every startup, but the installs do need to happen at some point
+	" base set of extensions to install always
+	let g:coc_global_extensions = ['coc-json',
+		\ 'coc-snippets',
+		\ 'coc-tag',
+		\ 'coc-word',
+		\ 'coc-dictionary',
+		\ 'coc-python',
+		\ 'coc-diagnostic',
+		\ 'coc-syntax',
+		\ 'coc-yank',
+		\ 'coc-sh',
+		\ 'coc-git',
+		\ 'coc-highlight']
 	" if hidden is not set, TextEdit might fail.
 	set hidden
 
