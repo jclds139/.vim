@@ -70,3 +70,5 @@
 [submodule "pack/syntax/start/medic_chalk"]
 	path = pack/syntax/start/medic_chalk
 	url = https://github.com/ParamagicDev/vim-medic_chalk.git
+[submodule "pack/basics/start/firenvim/"]
+	url = https://github.com/glacambre/firenvim.git
