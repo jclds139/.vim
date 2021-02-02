@@ -70,6 +70,53 @@ endfunction
 autocmd BufWritePre * call Timestamp("[uU]pdated:")
 autocmd BufWritePre * call Timestamp("Last Modified:")
 
+function AutoFontHeight()
+
+	if executable("xrandr") "calculate from xrandr
+		let l:w_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $4}'")
+		let l:h_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $5}'")
+		let l:w_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-5)}'")
+		let l:h_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-1)}'")
+
+		if (l:w_mm <= 0)
+			let l:dpi_w = 0
+		else
+			let l:dpi_w = l:w_px/(l:w_mm/25.4)
+		endif
+
+		if (l:h_mm <= 0)
+			let l:dpi_h = 0
+		else
+			let l:dpi_h = l:h_px/(l:h_mm/25.4)
+		endif
+
+		if (l:dpi_w == 0)
+			let l:dpi_w = l:dpi_h
+		elseif (l:dpi_h == 0)
+			let l:dpi_h = l:dpi_w
+		endif
+
+		if (l:dpi_w == 0) "both are 0
+			let l:dpi = 0
+		else
+			let l:dpi = (l:dpi_h+l:dpi_w)/2
+		endif
+	elseif executable("xdpyinfo") "read dpi directly from the Xserver
+		"xdpyinfo tends to lie if any scaling is involved, so let's deprioritize it
+		let l:dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $3}'")
+		let l:dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $4}'")
+		let l:dpi = (l:dpi_x+l:dpi_y)/2
+	else
+		let l:dpi = 0
+	endif
+
+	if type(l:dpi) == type(1.0) && l:dpi > 0
+		return 11+trunc((l:dpi-96)/20)
+	else
+		return 13
+	endif
+
+endfunction
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
@@ -102,20 +149,43 @@ if has("win32") || has("win64")
 
 endif
 
+function NvimFont(height)
+	if exists('g:GtkGuiLoaded') "for neovim-gtk
+		call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
+		call rpcnotify(1, 'Gui', 'Tabline', 0)
+		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
+	else "for nvim-qt
+		exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
+	endif
+endfunction
+
+if exists('g:started_by_firenvim')
+	let g:firenvim_config = { 
+			\ 'globalSettings': {
+				\ 'alt': 'all',
+			\  },
+			\ 'localSettings': {
+				\ '.*': {
+					\ 'content': 'text',
+					\ 'priority': 0,
+					\ 'takeover': 'never',
+					\ 'selector': 'textarea,input',
+					\ 'cmdline': 'neovim'
+				\ }
+			\ }
+		\ }
+
+	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
+
+	" exe "set lines=" . trim(string(round(&lines*10/AutoFontHeight())), '.0')
+	" exe "set columns=" . trim(string(round(&columns*10/AutoFontHeight())), '.0')
+	let g:gui_running = v:true
+endif
+
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	"colorscheme cyberpunk
 	colorscheme eldar
-
-	function NvimFont(height)
-			if exists('g:GtkGuiLoaded') "for neovim-gtk
-				call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
-				call rpcnotify(1, 'Gui', 'Tabline', 0)
-				call rpcnotify(1, 'Gui', 'Popupmenu', 0)
-			else "for nvim-qt
-				exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
-			endif
-	endfunction
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -131,63 +201,11 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
 		endif
 
-		"auto display scaling
-		if executable("xdpyinfo") "read dpi directly from the Xserver
-			let dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $3}'")
-			let dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $4}'")
-			let dpi = (dpi_x+dpi_y)/2
-			unlet dpi_x
-			unlet dpi_y
-		elseif executable("xrandr") "calculate from xrandr
-			let w_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $4}'")
-			let h_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $5}'")
-			let w_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-5)}'")
-			let h_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-1)}'")
-
-			if (w_mm <= 0)
-				let dpi_w = 0
-			else
-				let dpi_w = w_px/(w_mm/25.4)
-			endif
-			unlet w_px
-			unlet w_mm
-
-			if (h_mm <= 0)
-				let dpi_h = 0
-			else
-				let dpi_h = h_px/(h_mm/25.4)
-			endif
-			unlet w_px
-			unlet w_mm
-
-			if (dpi_w == 0)
-				let dpi_w = dpi_h
-			elseif (dpi_h == 0)
-				let dpi_h = dpi_w
-			endif
-
-			if (dpi_w == 0) "both are 0
-				let dpi = 0
-			else
-				let dpi = (dpi_h+dpi_w)/2
-			endif
-		else
-			let dpi = 0
-		endif
-
-		if type(dpi) == type(1.0) && dpi > 0
-			let font_height=11+trunc((dpi-96)/20)
-		else
-			let font_height=11
-		endif
-
 		if has("nvim")
-			call NvimFont(font_height)
+			call NvimFont(AutoFontHeight())
 		else
-			exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
+			exe ':set guifont=Anonymous\ Pro\ ' . string(AutoFontHeight())
 		endif
-		unlet font_height
-		unlet dpi
 	endif
 
 elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") == 1)
@@ -197,9 +215,6 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
 elseif has("nvim")
-	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
-	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
-
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
 		colorscheme eldar
@@ -209,9 +224,6 @@ elseif has("nvim")
 else
 	colorscheme harlequin
 endif
-
-"gui base color override
-highlight Normal guifg=#00C8FF
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
 if (v:version < 800) "adds everything to rtp
@@ -223,7 +235,7 @@ else "for vim 8.0 and later
 endif
 
 "F5 Compiling - especially handy for linting and PlantUML - but don't override
-	"plugins' mappings
+"plugins' mappings
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
 vnoremap <F5> :<C-U>:w<CR>:silent make<CR
@@ -341,30 +353,6 @@ if exists(":CocInfo")
 	nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 	" Resume latest coc list.
 	nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-endif
-
-if exists('g:started_by_firenvim')
-	let g:firenvim_config = { 
-		\ 'globalSettings': {
-			\ 'alt': 'all',
-		\  },
-		\ 'localSettings': {
-			\ '.*': {
-				\ 'content': 'text',
-				\ 'priority': 0,
-				\ 'takeover': 'never',
-				\ 'selector': 'textarea,input'
-			\ },
-		\ }
-	\ }
-
-	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
-
-	colorscheme archman
-
-	exe "set lines=" . trim(string(round(&lines*10/13)), '.0')
-	exe "set columns=" . trim(string(round(&columns*10/13)), '.0')
-	set guifont=Anonymous_Pro:h13
 endif
 
 silent! helptags ALL
