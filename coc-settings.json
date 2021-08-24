@@ -72,7 +72,10 @@
 					"endColumn": 4,
 					"message": 5
 				}
-			]
+			],
+			"securities" : {
+				"undefined" : "warning"
+			}
 		},
 
 		"alex": {
