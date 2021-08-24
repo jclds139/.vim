@@ -46,18 +46,6 @@
 	path = pack/syntax/start/vim-matlab
 	url = https://github.com/jclds139/vim-matlab.git
 	branch = master
-[submodule "pack/syntax/start/plantuml"]
-	path = pack/syntax/start/plantuml
-	url = https://github.com/aklt/plantuml-syntax.git
-[submodule "pack/syntax/start/systemd"]
-	path = pack/syntax/start/systemd
-	url = https://github.com/Matt-Deacalion/vim-systemd-syntax.git
-[submodule "pack/syntax/start/vim-python-pep8-indent"]
-	path = pack/syntax/start/vim-python-pep8-indent
-	url = https://github.com/Vimjas/vim-python-pep8-indent
-[submodule "pack/syntax/start/python-syntax"]
-	path = pack/syntax/start/python-syntax
-	url = https://github.com/vim-python/python-syntax.git
 [submodule "pack/syntax/start/graphviz"]
 	path = pack/syntax/start/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
@@ -72,3 +60,6 @@
 	url = https://github.com/ParamagicDev/vim-medic_chalk.git
 [submodule "pack/basics/start/firenvim/"]
 	url = https://github.com/glacambre/firenvim.git
+[submodule "pack/syntax/start/polyglot"]
+	path = pack/syntax/start/polyglot
+	url = https://github.com/sheerun/vim-polyglot
