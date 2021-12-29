@@ -22,18 +22,6 @@
 	path = pack/syntax/start/tiddlywiki
 	url = https://github.com/dnebauer/vim-tiddlywiki-ftplugin
 	branch = master
-[submodule "pack/syntax/opt/vim-latex"]
-	path = pack/syntax/opt/vim-latex
-	url = https://github.com/vim-latex/vim-latex.git
-	branch = master
-[submodule "pack/basics/opt/nerdtree"]
-	path = pack/basics/opt/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
-	branch = master
-[submodule "pack/basics/start/supertab"]
-	path = pack/basics/opt/supertab
-	url = https://github.com/ervandew/supertab.git
-	branch = master
 [submodule "pack/basics/start/surround"]
 	path = pack/basics/start/surround
 	url = https://github.com/tpope/vim-surround.git
