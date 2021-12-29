@@ -249,11 +249,9 @@ if exists(":CocInfo")
 		\ 'coc-tag',
 		\ 'coc-word',
 		\ 'coc-dictionary',
-		\ 'coc-python',
 		\ 'coc-diagnostic',
 		\ 'coc-syntax',
 		\ 'coc-yank',
-		\ 'coc-sh',
 		\ 'coc-git',
 		\ 'coc-highlight']
 	" if hidden is not set, TextEdit might fail.
