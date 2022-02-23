@@ -37,10 +37,13 @@ let g:plantuml_executable_script="plantuml -tsvg"
 let g:tex_flavor='latex'
 set shellslash
 
+"netrw browsing
+let g:netrw_browse_split = 4
+
 if has('nvim')
 	"cut off the 'init.vim'
 	let &directory = $MYVIMRC[:-9] . 'swaps//'
-	
+
 	"neovim support cursor spec
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -214,7 +217,7 @@ endif
 highlight Normal guifg=#00C8FF
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
-if (v:version < 800) "adds everything to rtp
+if (v:version < 800) && !has("nvim") "adds everything to rtp
 	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
 	endfor
