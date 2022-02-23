@@ -37,6 +37,9 @@ let g:plantuml_executable_script="plantuml -tsvg"
 let g:tex_flavor='latex'
 set shellslash
 
+"netrw browsing
+let g:netrw_browse_split = 4
+
 "firenvim lazy loading
 if exists('g:started_by_firenvim')
   packadd firenvim
@@ -231,7 +234,7 @@ else
 endif
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
-if (v:version < 800) "adds everything to rtp
+if (v:version < 800) && !has("nvim") "adds everything to rtp
 	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
 	endfor

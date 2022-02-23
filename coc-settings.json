@@ -1,9 +1,14 @@
 {
 	"languageserver": {
-		"clangd": {
-			"command": "clangd",
-			"rootPatterns": ["compile_flags.txt", "compile_commands.json"],
-			"filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp", "arduino"]
+		"ccls": {
+			"command": "ccls",
+			"filetypes": ["c", "cpp", "cuda", "objc", "objcpp", "arduino"],
+			"rootPatterns": [".ccls-root", "compile_commands.json"],
+			"initializationOptions": {
+				"client": {
+					"snippetSupport": true
+				}
+			}
 		}
 	},
 	"java.home" : "/usr/lib/jvm/default/",
