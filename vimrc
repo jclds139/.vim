@@ -37,6 +37,11 @@ let g:plantuml_executable_script="plantuml -tsvg"
 let g:tex_flavor='latex'
 set shellslash
 
+"firenvim lazy loading
+if exists('g:started_by_firenvim')
+  packadd firenvim
+endif
+
 if has('nvim')
 	"cut off the 'init.vim'
 	let &directory = $MYVIMRC[:-9] . 'swaps//'
