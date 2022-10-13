@@ -1,28 +1,28 @@
-[submodule "pack/basics/start/airline"]
+[submodule "airline"]
 	path = pack/basics/start/airline
 	url = https://github.com/vim-airline/vim-airline.git
 	branch = master
-[submodule "pack/basics/start/fugitive"]
+[submodule "fugitive"]
 	path = pack/basics/start/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 	branch = master
-[submodule "pack/basics/start/tcomment"]
+[submodule "tcomment"]
 	path = pack/basics/start/tcomment
 	url = https://github.com/tomtom/tcomment_vim
 	branch = master
-[submodule "pack/syntax/start/bro"]
+[submodule "bro"]
 	path = pack/syntax/start/bro
 	url = https://github.com/mephux/bro.vim.git
 	branch = master
-[submodule "pack/syntax/start/systemverilog"]
+[submodule "systemverilog"]
 	path = pack/syntax/start/systemverilog
 	url = https://github.com/vim-scripts/systemverilog.vim.git
 	branch = master
-[submodule "pack/syntax/start/tiddlywiki"]
+[submodule "tiddlywiki"]
 	path = pack/syntax/start/tiddlywiki
 	url = https://github.com/dnebauer/vim-tiddlywiki-ftplugin
 	branch = master
-[submodule "pack/basics/start/surround"]
+[submodule "surround"]
 	path = pack/basics/start/surround
 	url = https://github.com/tpope/vim-surround.git
 	branch = master
@@ -30,19 +30,19 @@
 	path = pack/syntax/start/coc
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
-[submodule "pack/syntax/start/vim-matlab"]
+[submodule "vim-matlab"]
 	path = pack/syntax/start/vim-matlab
 	url = https://github.com/jclds139/vim-matlab.git
 	branch = master
-[submodule "pack/syntax/start/graphviz"]
+[submodule "graphviz"]
 	path = pack/syntax/start/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
-[submodule "pack/syntax/start/eldar"]
+[submodule "eldar"]
 	path = pack/syntax/start/eldar
 	url = https://github.com/agude/vim-eldar.git
-[submodule "pack/syntax/start/medic_chalk"]
+[submodule "medic_chalk"]
 	path = pack/syntax/start/medic_chalk
 	url = https://github.com/ParamagicDev/vim-medic_chalk.git
-[submodule "pack/syntax/start/polyglot"]
+[submodule "polyglot"]
 	path = pack/syntax/start/polyglot
 	url = https://github.com/sheerun/vim-polyglot

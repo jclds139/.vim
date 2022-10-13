@@ -40,6 +40,11 @@ set shellslash
 "netrw browsing
 let g:netrw_browse_split = 4
 
+"firenvim lazy loading
+if exists('g:started_by_firenvim')
+  packadd firenvim
+endif
+
 if has('nvim')
 	"cut off the 'init.vim'
 	let &directory = $MYVIMRC[:-9] . 'swaps//'
@@ -73,6 +78,53 @@ endfunction
 autocmd BufWritePre * call Timestamp("[uU]pdated:")
 autocmd BufWritePre * call Timestamp("Last Modified:")
 
+function AutoFontHeight()
+
+	if executable("xrandr") "calculate from xrandr
+		let l:w_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $4}'")
+		let l:h_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $5}'")
+		let l:w_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-5)}'")
+		let l:h_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-1)}'")
+
+		if (l:w_mm <= 0)
+			let l:dpi_w = 0
+		else
+			let l:dpi_w = l:w_px/(l:w_mm/25.4)
+		endif
+
+		if (l:h_mm <= 0)
+			let l:dpi_h = 0
+		else
+			let l:dpi_h = l:h_px/(l:h_mm/25.4)
+		endif
+
+		if (l:dpi_w == 0)
+			let l:dpi_w = l:dpi_h
+		elseif (l:dpi_h == 0)
+			let l:dpi_h = l:dpi_w
+		endif
+
+		if (l:dpi_w == 0) "both are 0
+			let l:dpi = 0
+		else
+			let l:dpi = (l:dpi_h+l:dpi_w)/2
+		endif
+	elseif executable("xdpyinfo") "read dpi directly from the Xserver
+		"xdpyinfo tends to lie if any scaling is involved, so let's deprioritize it
+		let l:dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $3}'")
+		let l:dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $4}'")
+		let l:dpi = (l:dpi_x+l:dpi_y)/2
+	else
+		let l:dpi = 0
+	endif
+
+	if type(l:dpi) == type(1.0) && l:dpi > 0
+		return 11+trunc((l:dpi-96)/20)
+	else
+		return 13
+	endif
+
+endfunction
 
 if has("win32") || has("win64")
 	"taken from gVim Portable on Windows default _vimrc
@@ -105,20 +157,43 @@ if has("win32") || has("win64")
 
 endif
 
+function NvimFont(height)
+	if exists('g:GtkGuiLoaded') "for neovim-gtk
+		call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
+		call rpcnotify(1, 'Gui', 'Tabline', 0)
+		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
+	else "for nvim-qt
+		exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
+	endif
+endfunction
+
+if exists('g:started_by_firenvim')
+	let g:firenvim_config = { 
+			\ 'globalSettings': {
+				\ 'alt': 'all',
+			\  },
+			\ 'localSettings': {
+				\ '.*': {
+					\ 'content': 'text',
+					\ 'priority': 0,
+					\ 'takeover': 'never',
+					\ 'selector': 'textarea,input',
+					\ 'cmdline': 'neovim'
+				\ }
+			\ }
+		\ }
+
+	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
+
+	" exe "set lines=" . trim(string(round(&lines*10/AutoFontHeight())), '.0')
+	" exe "set columns=" . trim(string(round(&columns*10/AutoFontHeight())), '.0')
+	let g:gui_running = v:true
+endif
+
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	"colorscheme cyberpunk
 	colorscheme eldar
-
-	function NvimFont(height)
-			if exists('g:GtkGuiLoaded') "for neovim-gtk
-				call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
-				call rpcnotify(1, 'Gui', 'Tabline', 0)
-				call rpcnotify(1, 'Gui', 'Popupmenu', 0)
-			else "for nvim-qt
-				exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
-			endif
-	endfunction
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -134,63 +209,11 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
 		endif
 
-		"auto display scaling
-		if executable("xdpyinfo") "read dpi directly from the Xserver
-			let dpi_x = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $3}'")
-			let dpi_y = system("xdpyinfo | grep resolution | head -n1 | awk -F \"[[:space:]]+|x\" '{print $4}'")
-			let dpi = (dpi_x+dpi_y)/2
-			unlet dpi_x
-			unlet dpi_y
-		elseif executable("xrandr") "calculate from xrandr
-			let w_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $4}'")
-			let h_px = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $5}'")
-			let w_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-5)}'")
-			let h_mm = system("xrandr | grep primary | awk -F \"[[:space:]]*|x|+|mm\" '{print $(NF-1)}'")
-
-			if (w_mm <= 0)
-				let dpi_w = 0
-			else
-				let dpi_w = w_px/(w_mm/25.4)
-			endif
-			unlet w_px
-			unlet w_mm
-
-			if (h_mm <= 0)
-				let dpi_h = 0
-			else
-				let dpi_h = h_px/(h_mm/25.4)
-			endif
-			unlet w_px
-			unlet w_mm
-			
-			if (dpi_w == 0)
-				let dpi_w = dpi_h
-			elseif (dpi_h == 0)
-				let dpi_h = dpi_w
-			endif
-
-			if (dpi_w == 0) "both are 0
-				let dpi = 0
-			else
-				let dpi = (dpi_h+dpi_w)/2
-			endif
-		else
-			let dpi = 0
-		endif
-
-		if type(dpi) == type(1.0) && dpi > 0
-			let font_height=11+trunc((dpi-96)/20)
-		else
-			let font_height=11
-		endif
-
 		if has("nvim")
-			call NvimFont(font_height)
+			call NvimFont(AutoFontHeight())
 		else
-			exe ':set guifont=Anonymous\ Pro\ ' . string(font_height)
+			exe ':set guifont=Anonymous\ Pro\ ' . string(AutoFontHeight())
 		endif
-		unlet font_height
-		unlet dpi
 	endif
 
 elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") == 1)
@@ -200,9 +223,6 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
 elseif has("nvim")
-	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
-	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
-
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
 		colorscheme eldar
@@ -212,9 +232,6 @@ elseif has("nvim")
 else
 	colorscheme harlequin
 endif
-
-"gui base color override
-highlight Normal guifg=#00C8FF
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
 if (v:version < 800) && !has("nvim") "adds everything to rtp
@@ -226,7 +243,7 @@ else "for vim 8.0 and later
 endif
 
 "F5 Compiling - especially handy for linting and PlantUML - but don't override
-	"plugins' mappings
+"plugins' mappings
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
 vnoremap <F5> :<C-U>:w<CR>:silent make<CR
@@ -234,59 +251,42 @@ vnoremap <F5> :<C-U>:w<CR>:silent make<CR
 
 "extensions setup for CoC
 if exists(":CocInfo")
-	" base set of extensions to install always
-	let g:coc_global_extensions = ['coc-json',
-		\ 'coc-snippets',
-		\ 'coc-tag',
-		\ 'coc-word',
-		\ 'coc-dictionary',
-		\ 'coc-diagnostic',
-		\ 'coc-syntax',
-		\ 'coc-yank',
-		\ 'coc-git',
-		\ 'coc-highlight']
-	" if hidden is not set, TextEdit might fail.
-	set hidden
-
-	" Some servers have issues with backup files, see #649
+	" Some servers have issues with backup files, see #649.
 	set nobackup
 	set nowritebackup
-	" You will have bad experience for diagnostic messages when it's default 4000.
-	set updatetime=300
 
-	" don't give |ins-completion-menu| messages.
-	set shortmess+=c
+	" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+	" delays and poor user experience.
+	set updatetime=300
 
 	" Always show the signcolumn, otherwise it would shift the text each time
 	" diagnostics appear/become resolved.
-	if has("patch-8.1.1564")
-		" Recently vim can merge signcolumn and number column into one
-		set signcolumn=number
-	else
-		set signcolumn=yes
-	endif
+	set signcolumn=yes
 
 	" Use tab for trigger completion with characters ahead and navigate.
 	" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 	" other plugin before putting this into your config.
 	inoremap <silent><expr> <TAB>
-				\ pumvisible() ? "\<C-n>" :
-				\ <SID>check_back_space() ? "\<TAB>" :
+				\ coc#pum#visible() ? coc#pum#next(1):
+				\ CheckBackspace() ? "\<Tab>" :
 				\ coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-	function! s:check_back_space() abort
+	" Make <CR> to accept selected completion item or notify coc.nvim to format
+	" <C-g>u breaks current undo, please make your own choice.
+	inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+																\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+	function! CheckBackspace() abort
 		let col = col('.') - 1
 		return !col || getline('.')[col - 1]  =~# '\s'
 	endfunction
 
-	" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-	" position. Coc only does snippet and additional edit on confirm.
-	" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-	if exists('*complete_info')
-		inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+	" Use <c-space> to trigger completion.
+	if has('nvim')
+		inoremap <silent><expr> <c-space> coc#refresh()
 	else
-		inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+		inoremap <silent><expr> <c-@> coc#refresh()
 	endif
 
 	" Use `[g` and `]g` to navigate diagnostics
@@ -301,29 +301,64 @@ if exists(":CocInfo")
 	nmap <silent> gr <Plug>(coc-references)
 
 	" Use K to show documentation in preview window.
-	nnoremap <silent> K :call <SID>show_documentation()<CR>
+	nnoremap <silent> K :call ShowDocumentation()<CR>
 
-	function! s:show_documentation()
-		if (index(['vim','help'], &filetype) >= 0)
-			execute 'h '.expand('<cword>')
-		else
+	function! ShowDocumentation()
+		if CocAction('hasProvider', 'hover')
 			call CocActionAsync('doHover')
+		else
+			call feedkeys('K', 'in')
 		endif
 	endfunction
 
 	" Symbol renaming.
 	nmap <leader>rn <Plug>(coc-rename)
 
-	" Add `:Format` command to format current buffer.
-	command! -nargs=0 Format :call CocAction('format')
+	" Formatting selected code.
+	xmap <leader>f  <Plug>(coc-format-selected)
+	nmap <leader>f  <Plug>(coc-format-selected)
 
-	" Add `:Fold` command to fold current buffer.
-	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+	" Applying codeAction to the selected region.
+	" Example: `<leader>aap` for current paragraph
+	xmap <leader>a  <Plug>(coc-codeaction-selected)
+	nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 	" Remap keys for applying codeAction to the current buffer.
 	nmap <leader>ac  <Plug>(coc-codeaction)
 	" Apply AutoFix to problem on the current line.
 	nmap <leader>qf  <Plug>(coc-fix-current)
+
+	" Run the Code Lens action on the current line.
+	nmap <leader>cl  <Plug>(coc-codelens-action)
+
+	" Remap <C-f> and <C-b> for scroll float windows/popups.
+	if has('nvim-0.4.0') || has('patch-8.2.0750')
+		nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+		nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+		inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+		inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+		vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+		vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	endif
+
+	" Use CTRL-S for selections ranges.
+	" Requires 'textDocument/selectionRange' support of language server.
+	nmap <silent> <C-s> <Plug>(coc-range-select)
+	xmap <silent> <C-s> <Plug>(coc-range-select)
+
+	" Add `:Format` command to format current buffer.
+	command! -nargs=0 Format :call CocActionAsync('format')
+
+	" Add `:Fold` command to fold current buffer.
+	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+	" Add `:OR` command for organize imports of the current buffer.
+	command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+	" Add (Neo)Vim's native statusline support.
+	" NOTE: Please see `:h coc-status` for integrations with external plugins that
+	" provide custom statusline: lightline.vim, vim-airline.
+	" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 	" Mappings for CoCList
 	" Show all diagnostics.
