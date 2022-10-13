@@ -37,9 +37,6 @@
 [submodule "graphviz"]
 	path = pack/syntax/start/graphviz
 	url = https://github.com/liuchengxu/graphviz.vim.git
-[submodule "firenvim"]
-	path = pack/basics/opt/firenvim
-	url = https://github.com/glacambre/firenvim.git
 [submodule "eldar"]
 	path = pack/syntax/start/eldar
 	url = https://github.com/agude/vim-eldar.git
