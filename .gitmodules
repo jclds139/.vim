@@ -31,7 +31,7 @@
 	url = https://github.com/neoclide/coc.nvim.git
 	branch = release
 [submodule "vim-matlab"]
-	path = pack/syntax/start/vim-matlab
+	path = pack/syntax/start/matlab-syntax
 	url = https://github.com/jclds139/vim-matlab.git
 	branch = master
 [submodule "graphviz"]
@@ -46,3 +46,6 @@
 [submodule "polyglot"]
 	path = pack/syntax/start/polyglot
 	url = https://github.com/sheerun/vim-polyglot
+[submodule "matchit"]
+	path = pack/syntax/start/matchit
+	url = https://github.com/chrisbra/matchit
