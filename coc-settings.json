@@ -95,5 +95,14 @@
 	},
 	"python.linting.pylintArgs": [
 		"--generated-members=numpy.*,torch.*"
+	],
+	"texlab.build.executable": "tectonic",
+	"texlab.build.args": [
+		"-X",
+		"compile",
+		"%f",
+		"--synxtex",
+		"--keep-logs",
+		"--keep-intermediates"
 	]
 }
