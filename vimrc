@@ -184,10 +184,12 @@ if exists('g:started_by_firenvim')
 		\ }
 
 	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
+	au BufEnter localhost__*-HTML-BODY-*-TEXTAREA-*.txt set filetype=tiddlywiki spell linebreak
 
 	" exe "set lines=" . trim(string(round(&lines*10/AutoFontHeight())), '.0')
 	" exe "set columns=" . trim(string(round(&columns*10/AutoFontHeight())), '.0')
 	let g:gui_running = v:true
+	set termguicolors
 endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)

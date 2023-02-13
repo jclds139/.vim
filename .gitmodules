@@ -49,3 +49,6 @@
 [submodule "matchit"]
 	path = pack/syntax/start/matchit
 	url = https://github.com/chrisbra/matchit
+[submodule "firenvim"]
+	path = pack/basics/opt/firenvim
+	url = https://github.com/glacambre/firenvim.git
