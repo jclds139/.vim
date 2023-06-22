@@ -47,14 +47,17 @@ endif
 
 if has('nvim')
 	"cut off the 'init.vim'
-	let &directory = $MYVIMRC[:-9] . 'swaps//'
+	let &directory = expand('<sfile>:h:p') . '/swaps//'
 
 	"neovim support cursor spec
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
+	if exists('g:vscode')
+		let g:coc_start_at_startup = v:false
+	end
 else
 	"cut off just 'vimrc
-	let &directory = $MYVIMRC[:-6] . 'swaps//'
+	let &directory = expand('<sfile>:h:p') . '/swaps//'
 endif
 
 set tags=./tags; "search upward for the tags file, and use its directory
@@ -237,7 +240,7 @@ endif
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
 if (v:version < 800) && !has("nvim") "adds everything to rtp
-	for plugin in split(glob($MYVIMRC[:-6] . 'pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
+	for plugin in split(glob(expand('<sfile>:p:h') . '/pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
 	endfor
 else "for vim 8.0 and later

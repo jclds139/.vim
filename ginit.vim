@@ -1,2 +1,3 @@
 let g:gui_running=1
-source $MYVIMRC
+let s:config_folder = expand('<sfile>:p:h')
+exe 'source ' . s:config_folder . '/init.vim'
