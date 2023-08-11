@@ -33,6 +33,10 @@ let g:eldar_magenta = 'magenta'
 let g:plantuml_set_makeprg=1
 let g:plantuml_executable_script="plantuml -tsvg"
 
+"jupytext for ipynb files
+let g:jupytext_fmt='py:percent'
+let g:jupytext_filetype_map = { 'py:percent': 'python' }
+
 "LaTeX Options, for when LaTeX suite is enabled
 let g:tex_flavor='latex'
 set shellslash

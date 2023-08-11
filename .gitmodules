@@ -10,17 +10,9 @@
 	path = pack/basics/start/tcomment
 	url = https://github.com/tomtom/tcomment_vim
 	branch = master
-[submodule "bro"]
-	path = pack/syntax/start/bro
-	url = https://github.com/mephux/bro.vim.git
-	branch = master
-[submodule "systemverilog"]
-	path = pack/syntax/start/systemverilog
-	url = https://github.com/vim-scripts/systemverilog.vim.git
-	branch = master
 [submodule "tiddlywiki"]
 	path = pack/syntax/start/tiddlywiki
-	url = https://github.com/dnebauer/vim-tiddlywiki-ftplugin
+	url = https://github.com/sukima/vim-tiddlywiki
 	branch = master
 [submodule "surround"]
 	path = pack/basics/start/surround
@@ -34,9 +26,6 @@
 	path = pack/syntax/start/matlab-syntax
 	url = https://github.com/jclds139/vim-matlab.git
 	branch = master
-[submodule "graphviz"]
-	path = pack/syntax/start/graphviz
-	url = https://github.com/liuchengxu/graphviz.vim.git
 [submodule "eldar"]
 	path = pack/syntax/start/eldar
 	url = https://github.com/agude/vim-eldar.git
@@ -52,3 +41,6 @@
 [submodule "firenvim"]
 	path = pack/basics/opt/firenvim
 	url = https://github.com/glacambre/firenvim.git
+[submodule "pack/basics/start/jupytext"]
+	path = pack/basics/start/jupytext
+	url = https://github.com/goerz/jupytext.vim.git
