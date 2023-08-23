@@ -166,11 +166,11 @@ endif
 
 function NvimFont(height)
 	if exists('g:GtkGuiLoaded') "for neovim-gtk
-		call rpcnotify(1, 'Gui', 'Font', 'Anonymous Pro ' . string(a:height) )
+		call rpcnotify(1, 'Gui', 'Font', 'Fantasque Sans Mono' . string(a:height) )
 		call rpcnotify(1, 'Gui', 'Tabline', 0)
 		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
 	else "for nvim-qt
-		exe ':set guifont=Anonymous\ Pro:h' . string(a:height)
+		exe ':set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
 	endif
 endfunction
 
@@ -211,17 +211,17 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 		if has("nvim")
 			call NvimFont(14)
 		else
-			set guifont=Anonymous_Pro:h12,Courier_New:h12,Courier:h12
+			set guifont=Fantasque_Sans_Mono:h12,Anonymous_Pro:h12,Consolas:h12,Courier_New:h12,Courier:h12
 		endif
 	elseif has("unix")
-		if ! filereadable("$HOME/.fonts/Anonymous_Pro/AnonymousPro-Regular.ttf")
-			call system("cp -r ~/.vim/fonts/Anonymous_Pro ~/.fonts/")
+		if ! filereadable("$HOME/.fonts/Fantasque_Sans_Mono/FantasqueSansMono-Regular.otf")
+			call system("cp -r ~/.vim/fonts/Fantasque_Sans_Mono ~/.fonts/")
 		endif
 
 		if has("nvim")
 			call NvimFont(AutoFontHeight())
 		else
-			exe ':set guifont=Anonymous\ Pro\ ' . string(AutoFontHeight())
+			exe ':set guifont=Fantasque\ Sans\ Mono\ ' . string(AutoFontHeight())
 		endif
 	endif
 
