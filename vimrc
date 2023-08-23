@@ -184,14 +184,30 @@ if exists('g:started_by_firenvim')
 					\ 'content': 'text',
 					\ 'priority': 0,
 					\ 'takeover': 'never',
-					\ 'selector': 'textarea,input',
+					\ 'selector': 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"], input',
 					\ 'cmdline': 'neovim'
-				\ }
+				\ },
+				\ '.*notion\.so.*': { 'priority': 9, 'takeover': 'never', },
+      \ '.*docs\.google\.com.*': { 'priority': 9, 'takeover': 'never', },
 			\ }
 		\ }
 
-	au BufEnter localhost__*-SPAN-*-DIV-*.txt set filetype=tiddlywiki spell linebreak
-	au BufEnter localhost__*-HTML-BODY-*-TEXTAREA-*.txt set filetype=tiddlywiki spell linebreak
+	let l:bufname=expand('%:t')
+	if l:bufname =~? 'github.com'
+		set ft=markdown
+	elseif l:bufname =~? 'cocalc.com' || l:bufname =~? 'kaggleusercontent.com'
+		set ft=python
+	elseif l:bufname =~? 'localhost'
+		" Jupyter notebooks don't have any more specific buffer information.
+		" If you use some other locally hosted app you want editing function in, set it here.
+		set ft=tiddlywiki linebreak
+	elseif l:bufname =~? 'reddit.com'
+		set ft=markdown
+	elseif l:bufname =~? 'stackexchange.com' || l:bufname =~? 'stackoverflow.com'
+		set ft=markdown
+	elseif l:bufname =~? 'slack.com' || l:bufname =~? 'gitter.com'
+		set ft=markdown
+	endif
 
 	" exe "set lines=" . trim(string(round(&lines*10/AutoFontHeight())), '.0')
 	" exe "set columns=" . trim(string(round(&columns*10/AutoFontHeight())), '.0')
@@ -218,7 +234,9 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 			call system("cp -r ~/.vim/fonts/Fantasque_Sans_Mono ~/.fonts/")
 		endif
 
-		if has("nvim")
+		if exists('g:started_by_firenvim')
+			call NvimFont(14)
+		elseif has("nvim")
 			call NvimFont(AutoFontHeight())
 		else
 			exe ':set guifont=Fantasque\ Sans\ Mono\ ' . string(AutoFontHeight())
