@@ -170,7 +170,7 @@ function NvimFont(height)
 		call rpcnotify(1, 'Gui', 'Tabline', 0)
 		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
 	else "for nvim-qt
-		exe ':set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
+		exe 'set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
 	endif
 endfunction
 
@@ -192,25 +192,26 @@ if exists('g:started_by_firenvim')
 			\ }
 		\ }
 
-	let l:bufname=expand('%:t')
-	if l:bufname =~? 'github.com'
-		set ft=markdown
-	elseif l:bufname =~? 'cocalc.com' || l:bufname =~? 'kaggleusercontent.com'
-		set ft=python
-	elseif l:bufname =~? 'localhost'
-		" Jupyter notebooks don't have any more specific buffer information.
-		" If you use some other locally hosted app you want editing function in, set it here.
-		set ft=tiddlywiki linebreak
-	elseif l:bufname =~? 'reddit.com'
-		set ft=markdown
-	elseif l:bufname =~? 'stackexchange.com' || l:bufname =~? 'stackoverflow.com'
-		set ft=markdown
-	elseif l:bufname =~? 'slack.com' || l:bufname =~? 'gitter.com'
-		set ft=markdown
-	endif
+	function FireNvimFT()
+		let l:markdown_site_pattern = 'git[a-z]\{3}\.com\|stack\(exc\|over\)\|slack.com\|reddit.com'
+		let l:jupyter_site_pattern = 'co\(calc\|.*google.*\)\.com\|kaggle.*\.com'
 
-	" exe "set lines=" . trim(string(round(&lines*10/AutoFontHeight())), '.0')
-	" exe "set columns=" . trim(string(round(&columns*10/AutoFontHeight())), '.0')
+		let l:bufname=expand('%:t')
+		
+		if l:bufname =~? l:markdown_site_pattern
+			set filetype=markdown linebreak spell
+		elseif l:bufname =~? l:jupyter_site_pattern
+			set filetype=python
+		elseif l:bufname =~? 'localhost'
+			set filetype=tiddlywiki linebreak spell
+		endif
+	endfunction
+
+	autocmd BufReadPost,BufNewFile * call FireNvimFT()
+
+	autocmd UIEnter * call NvimFont(14)
+	
+
 	let g:gui_running = v:true
 	set termguicolors
 endif
@@ -227,19 +228,19 @@ if has("gui_running") || exists('g:gui_running') "only for gui sessions
 		if has("nvim")
 			call NvimFont(14)
 		else
-			set guifont=Fantasque_Sans_Mono:h12,Anonymous_Pro:h12,Consolas:h12,Courier_New:h12,Courier:h12
+			set guifont=Fantasque_Sans_Mono:h14,Anonymous_Pro:h14,Consolas:h14,Courier_New:h14,Courier:h14
 		endif
 	elseif has("unix")
 		if ! filereadable("$HOME/.fonts/Fantasque_Sans_Mono/FantasqueSansMono-Regular.otf")
 			call system("cp -r ~/.vim/fonts/Fantasque_Sans_Mono ~/.fonts/")
 		endif
 
-		if exists('g:started_by_firenvim')
-			call NvimFont(14)
-		elseif has("nvim")
-			call NvimFont(AutoFontHeight())
-		else
-			exe ':set guifont=Fantasque\ Sans\ Mono\ ' . string(AutoFontHeight())
+		if !exists('g:started_by_firenvim')
+			if has("nvim")
+				call NvimFont(AutoFontHeight())
+			else
+				exe 'set guifont=Fantasque\ Sans\ Mono\ ' . string(AutoFontHeight())
+			endif
 		endif
 	endif
 
