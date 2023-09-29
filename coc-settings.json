@@ -21,7 +21,8 @@
 		"tiddlywiki": [ "proselint" ],
 		"tex": [ "textidote", "proselint", "alexjs" ],
 		"latex": [ "textidote", "proselint", "alexjs" ],
-		"markdown": [ "textidote", "proselint", "alexjs" ]
+		"markdown": [ "textidote", "proselint", "alexjs" ],
+		"python": [ "flake8" ]
 	},
 	"diagnostic-languageserver.linters": {
 		"proselint": {
@@ -52,23 +53,23 @@
 			"debounce": 500,
 			"args": [ "--check", "en_US", "--dict", "~/.vim/spell/en.utf-8.add",
 				"--output", "singleline" ],
-			"offsetLine": 0,
-			"offsetColumn": 0,
-			"sourceName": "textidote",
-			"formatLines": 1,
-			"formatPattern": [
-				"^[^ ]+?\\(L(\\d+)C(\\d+)-L(\\d+)C(\\d+)\\)[^:]*?:(.*)\".*\"(\\r|\\n)*$",
-				{
-					"line": 1,
-					"column": 2,
-					"endLine": 3,
-					"endColumn": 4,
-					"message": 5
+				"offsetLine": 0,
+				"offsetColumn": 0,
+				"sourceName": "textidote",
+				"formatLines": 1,
+				"formatPattern": [
+					"^[^ ]+?\\(L(\\d+)C(\\d+)-L(\\d+)C(\\d+)\\)[^:]*?:(.*)\".*\"(\\r|\\n)*$",
+					{
+						"line": 1,
+						"column": 2,
+						"endLine": 3,
+						"endColumn": 4,
+						"message": 5
+					}
+				],
+				"securities": {
+					"undefined": "warning"
 				}
-			],
-			"securities": {
-				"undefined": "warning"
-			}
 		},
 		"alexjs": {
 			"command": "alexjs",
@@ -93,6 +94,31 @@
 			"securities": {
 				"warning": "warning",
 				"error": "error"
+			}
+		},
+		"flake8": {
+			"command": "flake8",
+			"debounce": 100,
+			"args": [ "--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s", "-" ],
+			"offsetLine": 0,
+			"offsetColumn": 0,
+			"sourceName": "flake8",
+			"formatLines": 1,
+			"formatPattern": [
+				"(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
+				{
+					"line": 1,
+					"column": 2,
+					"security": 3,
+					"message": 4
+				}
+			],
+			"securities": {
+				"W": "warning",
+				"E": "error",
+				"F": "error",
+				"C": "error",
+				"N": "error"
 			}
 		}
 	},

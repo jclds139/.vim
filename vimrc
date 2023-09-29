@@ -305,16 +305,15 @@ if exists(":CocInfo")
 	" Use tab for trigger completion with characters ahead and navigate.
 	" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 	" other plugin before putting this into your config.
-	inoremap <silent><expr> <TAB>
+	inoremap <silent><expr> <Tab>
 				\ coc#pum#visible() ? coc#pum#next(1):
 				\ CheckBackspace() ? "\<Tab>" :
 				\ coc#refresh()
-	inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+	inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 	" Make <CR> to accept selected completion item or notify coc.nvim to format
 	" <C-g>u breaks current undo, please make your own choice.
-	inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-																\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+	inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
 	function! CheckBackspace() abort
 		let col = col('.') - 1
@@ -323,9 +322,9 @@ if exists(":CocInfo")
 
 	" Use <c-space> to trigger completion.
 	if has('nvim')
-		inoremap <silent><expr> <c-space> coc#refresh()
+		inoremap <silent><expr> <c-space> coc#pum#visible() ? coc#_select_confirm() : "\<c-space>"
 	else
-		inoremap <silent><expr> <c-@> coc#refresh()
+		inoremap <silent><expr> <c-@> coc#pum#visible() ? coc#_select_confirm() : "\<c-@>"
 	endif
 
 	" Use `[g` and `]g` to navigate diagnostics
