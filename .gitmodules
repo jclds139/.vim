@@ -44,3 +44,6 @@
 [submodule "pack/basics/start/jupytext"]
 	path = pack/basics/start/jupytext
 	url = https://github.com/goerz/jupytext.vim.git
+[submodule "pack/basics/start/virtualenv"]
+	path = pack/basics/start/virtualenv
+	url = https://github.com/jmcantrell/vim-virtualenv

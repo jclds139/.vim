@@ -21,6 +21,8 @@ let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
 
 let g:tiddlywiki_autoupdate = 1
 
