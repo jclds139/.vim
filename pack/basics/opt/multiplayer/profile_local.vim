@@ -1,1 +1,0 @@
-{'g:multiplayer_highlight': '[''inverse'', ''Red'', ''White'']', 'g:multiplayer_cmap_leader': '''''', 'g:multiplayer_chat_mapping': '''m<CR>''', 'g:multiplayer_nmap_leader': '''<F4>''', 'g:multiplayer_name': '''g''', 'g:multiplayer_imap_leader': '''''', 'g:multiplayer_auto_connect': '''n''', 'g:multiplayer_chat_destination': '''Cec'''}
