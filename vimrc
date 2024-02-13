@@ -19,10 +19,14 @@ filetype plugin on
 let g:airline_skip_empty_sections = 1
 let g:airline_detect_spell = 1
 let g:airline_symbols_ascii = 1
+let g:airline_highlighting_cache = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+let g:airline#extensions#searchcount#enabled = 0
+
 
 let g:tiddlywiki_autoupdate = 1
 
@@ -49,9 +53,14 @@ let g:netrw_browse_split = 4
 "UltiSnips config
 let g:ultisnips_python_style = 'numpy'
 
+"load indent-guides if compatible
+if (v:version >= 720) || has("nvim")
+	packadd indent-guides
+endif
+
 "firenvim lazy loading
 if exists('g:started_by_firenvim')
-  packadd firenvim
+	packadd firenvim
 endif
 
 if has('nvim')
@@ -63,7 +72,7 @@ if has('nvim')
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 	if exists('g:vscode')
 		let g:coc_start_at_startup = v:false
-	end
+	endif
 else
 	"cut off just 'vimrc
 	let &directory = expand('<sfile>:h:p') . '/swaps//'
@@ -180,29 +189,29 @@ function NvimFont(height)
 endfunction
 
 if exists('g:started_by_firenvim')
-	let g:firenvim_config = { 
-			\ 'globalSettings': {
+	let g:firenvim_config = {
+				\ 'globalSettings': {
 				\ 'alt': 'all',
-			\  },
-			\ 'localSettings': {
+				\  },
+				\ 'localSettings': {
 				\ '.*': {
-					\ 'content': 'text',
-					\ 'priority': 0,
-					\ 'takeover': 'never',
-					\ 'selector': 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"], input',
-					\ 'cmdline': 'neovim'
+				\ 'content': 'text',
+				\ 'priority': 0,
+				\ 'takeover': 'never',
+				\ 'selector': 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"], input',
+				\ 'cmdline': 'neovim'
 				\ },
 				\ '.*notion\.so.*': { 'priority': 9, 'takeover': 'never', },
-      \ '.*docs\.google\.com.*': { 'priority': 9, 'takeover': 'never', },
-			\ }
-		\ }
+				\ '.*docs\.google\.com.*': { 'priority': 9, 'takeover': 'never', },
+				\ }
+				\ }
 
 	function FireNvimFT()
 		let l:markdown_site_pattern = 'git[a-z]\{3}\.com\|stack\(exc\|over\)\|slack.com\|reddit.com'
 		let l:jupyter_site_pattern = 'co\(calc\|.*google.*\)\.com\|kaggle.*\.com'
 
 		let l:bufname=expand('%:t')
-		
+
 		if l:bufname =~? l:markdown_site_pattern
 			set filetype=markdown linebreak spell
 		elseif l:bufname =~? l:jupyter_site_pattern
@@ -210,12 +219,12 @@ if exists('g:started_by_firenvim')
 		elseif l:bufname =~? 'localhost'
 			set filetype=tiddlywiki linebreak spell
 		endif
-	endfunction
+		endfunction
 
 	autocmd BufReadPost,BufNewFile * call FireNvimFT()
 
 	autocmd UIEnter * call NvimFont(14)
-	
+
 
 	let g:gui_running = v:true
 	set termguicolors
@@ -224,7 +233,7 @@ endif
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") || exists('g:gui_running') "only for gui sessions
 	"colorscheme cyberpunk
-	colorscheme eldar
+	colorscheme medic_chalk
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -286,15 +295,15 @@ vnoremap <F5> :<C-U>:w<CR>:silent make<CR
 if exists(":CocInfo")
 	" base set of extensions to install always
 	let g:coc_global_extensions = ['coc-json',
-		\ 'coc-snippets',
-		\ 'coc-tag',
-		\ 'coc-word',
-		\ 'coc-dictionary',
-		\ 'coc-diagnostic',
-		\ 'coc-syntax',
-		\ 'coc-yank',
-		\ 'coc-git',
-		\ 'coc-highlight']
+				\ 'coc-snippets',
+				\ 'coc-tag',
+				\ 'coc-word',
+				\ 'coc-dictionary',
+				\ 'coc-diagnostic',
+				\ 'coc-syntax',
+				\ 'coc-yank',
+				\ 'coc-git',
+				\ 'coc-highlight']
 
 	" load UltiSnips with CoC
 	if (v:version < 800) && !has("nvim") "adds everything to rtp

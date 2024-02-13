@@ -50,3 +50,6 @@
 [submodule "pack/syntax/start/vim-snippets"]
 	path = pack/syntax/opt/vim-snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "pack/syntax/start/indent-guides"]
+	path = pack/syntax/opt/indent-guides
+	url = https://github.com/preservim/vim-indent-guides
