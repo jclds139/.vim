@@ -19,18 +19,38 @@
 			"filetypes": [ "sh" ]
 		}
 	},
+	"ltex.enabled": [
+		"bibtex",
+		"context",
+		"context.tex",
+		"html",
+		"latex",
+		"markdown",
+		"org",
+		"restructuredtext",
+		"rsweave",
+		"python",
+		"c",
+		"cpp",
+		"arduino",
+		"shellscript"
+	],
+	"ltex.dictionary": {
+		"en-US": [
+			"~/.vim/spell/en.utf-8.add"
+		]
+	},
 	"jedi.executable.command": "jedi-language-server",
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
 		"tiddlywiki": [ "proselint", "alex-text" ],
-		"tex": [ "textidote", "proselint", "alex" ],
-		"latex": [ "textidote", "proselint", "alex" ],
-		"markdown": [ "textidote", "proselint", "alex" ],
-		"python": [ "pylint" ],
+		"tex": [ "proselint", "alex" ],
+		"latex": [ "proselint", "alex" ],
+		"markdown": [ "proselint", "alex" ],
 		"systemd": [ "systemd-analyze" ]
 	},
+	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic-languageserver.formatFiletypes": {
-		"python": [ "black" ]
 	},
 	"diagnostic-languageserver.linters": {
 	},

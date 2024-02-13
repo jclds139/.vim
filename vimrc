@@ -46,6 +46,9 @@ set shellslash
 "netrw browsing
 let g:netrw_browse_split = 4
 
+"UltiSnips config
+let g:ultisnips_python_style = 'numpy'
+
 "firenvim lazy loading
 if exists('g:started_by_firenvim')
   packadd firenvim
@@ -292,6 +295,17 @@ if exists(":CocInfo")
 		\ 'coc-yank',
 		\ 'coc-git',
 		\ 'coc-highlight']
+
+	" load UltiSnips with CoC
+	if (v:version < 800) && !has("nvim") "adds everything to rtp
+		for plugin in split(glob(expand('<sfile>:p:h') . '/pack/syntax/opt/*'), '\n') "for each plugin found in 'syntax/opt' folder
+			"that folder should only contain the snippet plugins
+			let &runtimepath.=','.plugin "add it to the runtime path
+		endfor
+	else "for vim 8.0 and later
+		packadd vim-snippets
+	endif
+
 	" Some servers have issues with backup files, see #649.
 	set nobackup
 	set nowritebackup
@@ -309,6 +323,7 @@ if exists(":CocInfo")
 	" other plugin before putting this into your config.
 	inoremap <silent><expr> <Tab>
 				\ coc#pum#visible() ? coc#pum#next(1):
+				\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
 				\ CheckBackspace() ? "\<Tab>" :
 				\ coc#refresh()
 	inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"

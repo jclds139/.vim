@@ -47,3 +47,6 @@
 [submodule "pack/basics/start/virtualenv"]
 	path = pack/basics/start/virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv
+[submodule "pack/syntax/start/vim-snippets"]
+	path = pack/syntax/opt/vim-snippets
+	url = https://github.com/honza/vim-snippets
