@@ -40,7 +40,9 @@
 			"~/.vim/spell/en.utf-8.add"
 		]
 	},
-	"jedi.executable.command": "jedi-language-server",
+	"pylsp.plugins.black.enabled": false,
+	"pylsp.plugins.ruff.enabled": true,
+	"pylsp.disableProgressNotifications": false,
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
 		"tiddlywiki": [ "proselint", "alex-text" ],
@@ -54,5 +56,6 @@
 	},
 	"diagnostic-languageserver.linters": {
 	},
-	"snippets.ultisnips.pythonPrompt": false
+	"snippets.ultisnips.pythonPrompt": false,
+	"pydocstring.formatter": "numpy"
 }

@@ -54,7 +54,7 @@ let g:netrw_browse_split = 4
 let g:ultisnips_python_style = 'numpy'
 
 "load indent-guides if compatible
-if (v:version >= 720) || has("nvim")
+if (v:version >= 720) || has("nvim") && !exists('g:vscode')
 	packadd indent-guides
 endif
 
@@ -280,6 +280,19 @@ if (v:version < 800) && !has("nvim") "adds everything to rtp
 	for plugin in split(glob(expand('<sfile>:p:h') . '/pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
 	endfor
+elseif exists('g:vscode')
+	set noloadplugins
+	packadd matchit
+	packadd surround
+	packadd tcomment
+	packadd virtualenv
+	packadd fugitive
+	packadd airline
+	packadd eldar
+	packadd medic_chalk
+	packadd polyglot
+	packadd matlab-syntax
+	let g:clipboard = g:vscode_clipboard
 else "for vim 8.0 and later
 	packloadall "it just takes one command to do all that, and a better job of it to boot
 endif
@@ -303,7 +316,8 @@ if exists(":CocInfo")
 				\ 'coc-syntax',
 				\ 'coc-yank',
 				\ 'coc-git',
-				\ 'coc-highlight']
+				\ 'coc-highlight',
+				\ 'coc-marketplace']
 
 	" load UltiSnips with CoC
 	if (v:version < 800) && !has("nvim") "adds everything to rtp
