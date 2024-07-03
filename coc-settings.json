@@ -16,7 +16,7 @@
 		"bash": {
 			"command": "bash-language-server",
 			"args": [ "start" ],
-			"filetypes": [ "sh" ]
+			"filetypes": [ "sh", "bash", "PKGBUILD" ]
 		}
 	},
 	"ltex.enabled": [
@@ -37,9 +37,11 @@
 	],
 	"ltex.dictionary": {
 		"en-US": [
-			"~/.vim/spell/en.utf-8.add"
+			":spell/en.utf-8.add"
 		]
 	},
+	"ltex.completionEnabled": true,
+	"ltex.additionalRules.motherTongue": "en-US",
 	"pylsp.plugins.black.enabled": false,
 	"pylsp.plugins.ruff.enabled": true,
 	"pylsp.disableProgressNotifications": false,
