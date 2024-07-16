@@ -35,6 +35,14 @@ let g:eldar_text = '#00C8FF'
 let g:eldar_cyan = '#507070'
 let g:eldar_magenta = 'magenta'
 
+"Moonfly Colorscheme Config
+let g:moonflyItalics = v:true
+let g:moonflyVirtualTextColor = v:true
+let g:moonflyUnderlineMatchParen = v:true
+let g:moonflyUndercurls = v:true
+let g:moonflyTransparent = v:false
+let g:moonflyTerminalColors = v:false
+
 "PlantUML Compile Options
 let g:plantuml_set_makeprg=1
 let g:plantuml_executable_script="plantuml -tsvg"
@@ -232,8 +240,7 @@ endif
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") || exists('g:gui_running') "only for gui sessions
-	"colorscheme cyberpunk
-	colorscheme medic_chalk
+	colorscheme moonfly
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -265,14 +272,17 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
 elseif has("nvim")
+	packadd treesitter
+	runtime ts.lua
+	silent TSUpdate
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
 		colorscheme eldar
 	else
-		colorscheme harlequin
+		colorscheme moonfly
 	endif
 else
-	colorscheme harlequin
+	colorscheme moonfly
 endif
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
@@ -280,11 +290,11 @@ if (v:version < 800) && !has("nvim") "adds everything to rtp
 	for plugin in split(glob(expand('<sfile>:p:h') . '/pack/*/start/*'), '\n') "for each plugin found in a 'start' folder
 		let &runtimepath.=','.plugin "add it to the runtime path
 	endfor
+	packadd tcomment "only needed for vanilla vim, not for nvim
 elseif exists('g:vscode')
 	set noloadplugins
 	packadd matchit
 	packadd surround
-	packadd tcomment
 	packadd virtualenv
 	packadd fugitive
 	packadd airline
@@ -295,6 +305,7 @@ elseif exists('g:vscode')
 	let g:clipboard = g:vscode_clipboard
 else "for vim 8.0 and later
 	packloadall "it just takes one command to do all that, and a better job of it to boot
+	packadd tcomment "only needed for vanilla vim, not for nvim
 endif
 
 "F5 Compiling - especially handy for linting and PlantUML - but don't override

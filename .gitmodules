@@ -7,7 +7,7 @@
 	url = https://github.com/tpope/vim-fugitive.git
 	branch = master
 [submodule "tcomment"]
-	path = pack/basics/start/tcomment
+	path = pack/basics/opt/tcomment
 	url = https://github.com/tomtom/tcomment_vim
 	branch = master
 [submodule "tiddlywiki"]
@@ -29,9 +29,6 @@
 [submodule "eldar"]
 	path = pack/syntax/start/eldar
 	url = https://github.com/agude/vim-eldar.git
-[submodule "medic_chalk"]
-	path = pack/syntax/start/medic_chalk
-	url = https://github.com/ParamagicDev/vim-medic_chalk.git
 [submodule "matchit"]
 	path = pack/syntax/start/matchit
 	url = https://github.com/chrisbra/matchit
@@ -50,3 +47,9 @@
 [submodule "pack/syntax/start/indent-guides"]
 	path = pack/syntax/opt/indent-guides
 	url = https://github.com/preservim/vim-indent-guides
+[submodule "pack/syntax/opt/treesitter"]
+	path = pack/syntax/opt/treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+[submodule "pack/syntax/start/moonfly-colors"]
+	path = pack/syntax/start/moonfly-colors
+	url = https://github.com/bluz71/vim-moonfly-colors.git
