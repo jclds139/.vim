@@ -1,22 +1,13 @@
 {
 	"languageserver": {
-		"ccls": {
-			"command": "ccls",
-			"filetypes": [ "c", "cpp", "c++", "cc", "objc", "objcpp", "arduino" ],
-			"rootPatterns": [ ".ccls-root", "compile_commands.json" ],
-			"initializationOptions": {
-				"cache" : {
-					"directory": "/tmp/ccls"
-				},
-				"client": {
-					"snippetSupport": true
-				}
-			}
-		},
 		"bash": {
 			"command": "bash-language-server",
 			"args": [ "start" ],
 			"filetypes": [ "sh", "bash", "PKGBUILD" ]
+		},
+		"systemd-language-server": {
+			"command": "systemd-language-server",
+			"filetypes": ["systemd"]
 		}
 	},
 	"ltex.enabled": [
@@ -40,11 +31,13 @@
 			":spell/en.utf-8.add"
 		]
 	},
+	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.motherTongue": "en-US",
-	"pylsp.plugins.black.enabled": false,
-	"pylsp.plugins.ruff.enabled": true,
 	"pylsp.disableProgressNotifications": false,
+	"pylsp.plugins.ruff.enabled": false,
+	"pylsp.plugins.pycodestyle.maxLineLength": 88, //matches with Ruff defaults
+	"ruff.nativeServer": true,
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
 		"tiddlywiki": [ "proselint", "alex-text" ],
@@ -59,5 +52,5 @@
 	"diagnostic-languageserver.linters": {
 	},
 	"snippets.ultisnips.pythonPrompt": false,
-	"pydocstring.formatter": "numpy"
+	"pydocstring.formatter": "numpy",
 }

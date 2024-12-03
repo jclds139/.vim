@@ -43,6 +43,12 @@ let g:moonflyUndercurls = v:true
 let g:moonflyTransparent = v:false
 let g:moonflyTerminalColors = v:false
 
+" Vimscript initialization file
+augroup moonflyCustom
+    autocmd!
+    autocmd ColorScheme moonfly highlight Normal guifg=#00c8ff
+augroup END
+
 "PlantUML Compile Options
 let g:plantuml_set_makeprg=1
 let g:plantuml_executable_script="plantuml -tsvg"
@@ -272,14 +278,15 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
 elseif has("nvim")
+	packadd sphinx.nvim
 	packadd treesitter
 	runtime ts.lua
 	silent TSUpdate
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
-		colorscheme eldar
-	else
 		colorscheme moonfly
+	else
+		colorscheme eldar
 	endif
 else
 	colorscheme moonfly
@@ -299,8 +306,7 @@ elseif exists('g:vscode')
 	packadd fugitive
 	packadd airline
 	packadd eldar
-	packadd medic_chalk
-	packadd polyglot
+	packadd moonfly-colors
 	packadd matlab-syntax
 	let g:clipboard = g:vscode_clipboard
 else "for vim 8.0 and later
@@ -329,6 +335,10 @@ if exists(":CocInfo")
 				\ 'coc-git',
 				\ 'coc-highlight',
 				\ 'coc-marketplace']
+
+	let g:coc_filetype_map = {
+				\ 'arduino': 'cpp'
+				\ }
 
 	" load UltiSnips with CoC
 	if (v:version < 800) && !has("nvim") "adds everything to rtp

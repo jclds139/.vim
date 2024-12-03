@@ -50,6 +50,10 @@
 [submodule "pack/syntax/opt/treesitter"]
 	path = pack/syntax/opt/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
+	branch = master
 [submodule "pack/syntax/start/moonfly-colors"]
 	path = pack/syntax/start/moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors.git
+[submodule "pack/syntax/opt/sphinx.nvim"]
+	path = pack/syntax/opt/sphinx.nvim
+	url = https://github.com/stsewd/sphinx.nvim
