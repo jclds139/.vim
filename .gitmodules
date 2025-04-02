@@ -32,9 +32,6 @@
 [submodule "matchit"]
 	path = pack/syntax/start/matchit
 	url = https://github.com/chrisbra/matchit
-[submodule "firenvim"]
-	path = pack/basics/opt/firenvim
-	url = https://github.com/glacambre/firenvim.git
 [submodule "pack/basics/start/jupytext"]
 	path = pack/basics/start/jupytext
 	url = https://github.com/goerz/jupytext.vim.git
@@ -57,3 +54,6 @@
 [submodule "pack/syntax/opt/sphinx.nvim"]
 	path = pack/syntax/opt/sphinx.nvim
 	url = https://github.com/stsewd/sphinx.nvim
+[submodule "pack/basics/start/nvim-ghost"]
+	path = pack/basics/start/nvim-ghost
+	url = https://github.com/subnut/nvim-ghost.nvim.git
