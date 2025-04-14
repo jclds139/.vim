@@ -285,6 +285,7 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 elseif has("nvim")
 	packadd sphinx.nvim
 	packadd treesitter
+	packadd nvim-ghost
 	runtime ts.lua
 	silent TSUpdate
 	if ($COLORTERM == "truecolor" || has("termguicolors"))

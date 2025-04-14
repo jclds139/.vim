@@ -55,5 +55,5 @@
 	path = pack/syntax/opt/sphinx.nvim
 	url = https://github.com/stsewd/sphinx.nvim
 [submodule "pack/basics/start/nvim-ghost"]
-	path = pack/basics/start/nvim-ghost
+	path = pack/basics/opt/nvim-ghost
 	url = https://github.com/subnut/nvim-ghost.nvim.git
