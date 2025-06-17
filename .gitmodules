@@ -47,7 +47,7 @@
 [submodule "pack/syntax/opt/treesitter"]
 	path = pack/syntax/opt/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-	branch = master
+	branch = main
 [submodule "pack/syntax/start/moonfly-colors"]
 	path = pack/syntax/start/moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors.git
