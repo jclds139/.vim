@@ -67,6 +67,10 @@ let g:netrw_browse_split = 4
 "UltiSnips config
 let g:ultisnips_python_style = 'numpy'
 
+"Copilot Config
+autocmd VimEnter * Copilot disable
+	" disable by default, can be manually started later
+
 "load indent-guides if compatible
 if (v:version >= 720) || has("nvim") && !exists('g:vscode')
 	packadd! indent-guides
@@ -346,8 +350,7 @@ if exists(":CocInfo")
 				\ 'coc-yank',
 				\ 'coc-git',
 				\ 'coc-highlight',
-				\ 'coc-marketplace',
-				\ '@hexuhua/coc-copilot']
+				\ 'coc-marketplace']
 
 	let g:coc_filetype_map = {
 				\ 'arduino': 'cpp'
