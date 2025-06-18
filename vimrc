@@ -340,7 +340,8 @@ if exists(":CocInfo")
 				\ 'coc-yank',
 				\ 'coc-git',
 				\ 'coc-highlight',
-				\ 'coc-marketplace']
+				\ 'coc-marketplace',
+				\ '@hexuhua/coc-copilot']
 
 	let g:coc_filetype_map = {
 				\ 'arduino': 'cpp'

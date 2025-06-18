@@ -12,7 +12,6 @@ require 'nvim-treesitter'.install({
 	"markdown",
 	"markdown_inline",
 	"bash",
-	"gitcommit",
 	"comment",
 })
 
