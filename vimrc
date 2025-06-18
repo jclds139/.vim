@@ -69,13 +69,19 @@ let g:ultisnips_python_style = 'numpy'
 
 "load indent-guides if compatible
 if (v:version >= 720) || has("nvim") && !exists('g:vscode')
-	packadd indent-guides
+	packadd! indent-guides
 endif
 
 "firenvim lazy loading
 if exists('g:started_by_firenvim')
-	packadd firenvim
+	packadd! firenvim
 endif
+
+
+"load local.vim if it exists, for local overrides
+runtime local.vimrc
+runtime local.vim
+
 
 if has('nvim')
 	"cut off the 'init.vim'
@@ -92,7 +98,7 @@ else
 	let &directory = expand('<sfile>:h:p') . '/swaps//'
 endif
 
-set tags=./tags; "search upward for the tags file, and use its directory
+set tags=./tags,tags "search upward for the tags file, and use its directory
 
 " Auto Update timestamps (@updated:)
 " If buffer modified, update any 'Last modified: ' in the first 20 lines.
