@@ -67,10 +67,6 @@ let g:netrw_browse_split = 4
 "UltiSnips config
 let g:ultisnips_python_style = 'numpy'
 
-"Copilot Config
-autocmd VimEnter * Copilot disable
-	" disable by default, can be manually started later
-
 "load indent-guides if compatible
 if (v:version >= 720) || has("nvim") && !exists('g:vscode')
 	packadd! indent-guides
@@ -296,8 +292,11 @@ elseif has("nvim")
 	packadd sphinx.nvim
 	packadd treesitter
 	packadd nvim-ghost
-	runtime ts.lua
-	silent TSUpdate
+	if exists(':TSUpdate')
+		"treesitter might be removed/unavailable on some platforms
+		runtime ts.lua
+		silent TSUpdate
+	endif
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
 		colorscheme moonfly
@@ -335,6 +334,12 @@ endif
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
 vnoremap <F5> :<C-U>:w<CR>:silent make<CR
+
+"Copilot Config
+if exists(':Copilot')
+	autocmd VimEnter * Copilot disable
+	" disable by default, can be manually started later
+endif
 
 
 "extensions setup for CoC
