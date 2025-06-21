@@ -57,7 +57,3 @@
 [submodule "pack/basics/start/nvim-ghost"]
 	path = pack/basics/opt/nvim-ghost
 	url = https://github.com/subnut/nvim-ghost.nvim.git
-[submodule "pack/syntax/start/copilot"]
-	path = pack/syntax/start/copilot
-	url = https://github.com/github/copilot.vim
-	branch = release

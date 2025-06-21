@@ -102,4 +102,7 @@
 	},
 	"snippets.ultisnips.pythonPrompt": false,
 	"pydocstring.formatter": "numpy",
+	"github-copilot.filetypes": [
+		""
+	],
 }

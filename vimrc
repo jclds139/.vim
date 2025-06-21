@@ -395,7 +395,13 @@ if exists(":CocInfo")
 
 	" Make <CR> to accept selected completion item or notify coc.nvim to format
 	" <C-g>u breaks current undo, please make your own choice.
-	inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+	inoremap <silent><expr> <cr>
+				\ coc#pum#visible() ? coc#pum#select_confirm() :
+				\ coc#inline#visible() ? coc#inline#accept() :
+				\ "\<CR>"
+
+	inoremap <silent><expr> <C-Tab> coc#inline#visible() ? coc#inline#accept() : "\<C-Tab>"
+	inoremap <silent><expr> <C-S-Tab> coc#inline#visible() ? coc#inline#next() : "\<C-S-Tab>"
 
 	function! CheckBackspace() abort
 		let col = col('.') - 1
@@ -404,9 +410,15 @@ if exists(":CocInfo")
 
 	" Use <c-space> to trigger completion.
 	if has('nvim')
-		inoremap <silent><expr> <c-space> coc#pum#visible() ? coc#_select_confirm() : "\<c-space>"
+		inoremap <silent><expr> <c-space>
+				\ coc#pum#visible() ? coc#pum#select_confirm() :
+				\ coc#inline#visible() ? coc#inline#accept() :
+				\ "\<C-space>"
 	else
-		inoremap <silent><expr> <c-@> coc#pum#visible() ? coc#_select_confirm() : "\<c-@>"
+		inoremap <silent><expr> <c-@>
+				\ coc#pum#visible() ? coc#pum#select_confirm() :
+				\ coc#inline#visible() ? coc#inline#accept() :
+				\ "\<C-@>"
 	endif
 
 	" Use `[g` and `]g` to navigate diagnostics
@@ -474,6 +486,20 @@ if exists(":CocInfo")
 
 	" Add `:OR` command for organize imports of the current buffer.
 	command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+	if !exists(':Copilot')
+		" But, only if not using copilot.vim
+		function s:toggleCopilotSafe()
+			try
+				call CocAction('toggleService', 'github-copilot')
+			catch
+			"ignore errors when github-copilot isn't installed
+			endtry
+		endfunction
+
+		" Add command to toggle Copilot Completions with coc-github-copilot
+		command! -nargs=0 CopilotToggle call s:toggleCopilotSafe()
+	endif
 
 	" Add (Neo)Vim's native statusline support.
 	" NOTE: Please see `:h coc-status` for integrations with external plugins that
