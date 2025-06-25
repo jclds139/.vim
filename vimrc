@@ -291,7 +291,6 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 elseif has("nvim")
 	packadd sphinx.nvim
 	packadd treesitter
-	packadd nvim-ghost
 	if exists(':TSUpdate')
 		"treesitter might be removed/unavailable on some platforms
 		runtime ts.lua
