@@ -8,81 +8,32 @@
 		"systemd-language-server": {
 			"command": "systemd-language-server",
 			"filetypes": ["systemd"]
-		},
-		"ltex": {
-			"command": "ltex-ls-plus",
-			"filetypes": [
-				"bib",
-				"bibtex",
-				"context",
-				"context.tex",
-				"gitcommit",
-				"html",
-				"markdown",
-				"org",
-				"pandoc",
-				"plaintex",
-				"quarto",
-				"mail",
-				"mdx",
-				"rmd",
-				"rnoweb",
-				"text",
-				"restructuredtext",
-				"rst",
-				"typst",
-				"xhtml",
-				"rsweave",
-				"latex",
-				"tex",
-				"python",
-				"c",
-				"cpp",
-				"arduino",
-				"shellscript",
-			],
-			"settings": {
-				"enabled": [
-					"bib",
-					"bibtex",
-					"context",
-					"context.tex",
-					"gitcommit",
-					"html",
-					"markdown",
-					"org",
-					"pandoc",
-					"plaintex",
-					"quarto",
-					"mail",
-					"mdx",
-					"rmd",
-					"rnoweb",
-					"text",
-					"restructuredtext",
-					"rst",
-					"typst",
-					"xhtml",
-					"rsweave",
-					"latex",
-					"tex",
-					"python",
-					"c",
-					"cpp",
-					"arduino",
-					"shellscript",
-				],
-				"dictionary": {
-					"en-US": [
-						":spell/en.utf-8.add"
-					]
-
-				},
-				"completionEnabled": true,
-				"languageToolHttpServerUri": "https://localhost:8081/",
-			}
 		}
 	},
+	"ltex.enabled": [
+		"bibtex",
+		"context",
+		"context.tex",
+		"html",
+		"latex",
+		"markdown",
+		"org",
+		"restructuredtext",
+		"rsweave",
+		"python",
+		"c",
+		"cpp",
+		"arduino",
+		"shellscript"
+	],
+	"ltex.dictionary": {
+		"en-US": [
+			":spell/en.utf-8.add"
+		]
+	},
+	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
+	"ltex.completionEnabled": true,
+	"ltex.additionalRules.motherTongue": "en-US",
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
 	"pylsp.plugins.pycodestyle.maxLineLength": 88, //matches with Ruff defaults

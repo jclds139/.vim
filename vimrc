@@ -396,11 +396,11 @@ if exists(":CocInfo")
 	" <C-g>u breaks current undo, please make your own choice.
 	inoremap <silent><expr> <cr>
 				\ coc#pum#visible() ? coc#pum#select_confirm() :
-				\ coc#inline#visible() ? coc#inline#accept() :
 				\ "\<CR>"
 
-	inoremap <silent><expr> <C-Tab> coc#inline#visible() ? coc#inline#accept() : "\<C-Tab>"
-	inoremap <silent><expr> <C-S-Tab> coc#inline#visible() ? coc#inline#next() : "\<C-S-Tab>"
+	inoremap <expr> <C-Right> coc#inline#visible() ? coc#inline#accept() : "\<C-Right>"
+	
+	inoremap <expr> <C-Left> coc#inline#visible() ? coc#inline#next() : "\<C-Left>"
 
 	function! CheckBackspace() abort
 		let col = col('.') - 1
