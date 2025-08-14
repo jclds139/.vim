@@ -57,3 +57,6 @@
 [submodule "pack/basics/opt/firenvim"]
 	path = pack/basics/opt/firenvim
 	url = https://github.com/glacambre/firenvim
+[submodule "pack/syntax/start/vim-sleuth"]
+	path = pack/syntax/start/vim-sleuth
+	url = https://github.com/tpope/vim-sleuth
