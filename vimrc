@@ -489,11 +489,13 @@ if exists(":CocInfo")
 	if !exists(':Copilot')
 		" But, only if not using copilot.vim
 		function s:toggleCopilotSafe()
-			try
+			if index(map(CocAction('services'), 'v:val["id"]'), 'github-copilot') >= 0
+				"if `github-copilot` is in the list of services
 				call CocAction('toggleService', 'github-copilot')
-			catch
-			"ignore errors when github-copilot isn't installed
-			endtry
+			elseif index(map(CocAction('services'), 'v:val["id"]'), 'copilot') >= 0
+				"if `copilot` is in the list of services
+				call CocAction('toggleService', 'copilot')
+			endif
 		endfunction
 
 		" Add command to toggle Copilot Completions with coc-github-copilot
