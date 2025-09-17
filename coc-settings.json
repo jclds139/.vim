@@ -2,8 +2,8 @@
 	"languageserver": {
 		"bash": {
 			"command": "bash-language-server",
-			"args": [ "start" ],
-			"filetypes": [ "sh", "bash", "PKGBUILD" ]
+			"args": ["start"],
+			"filetypes": ["sh", "bash", "PKGBUILD"]
 		},
 		"systemd-language-server": {
 			"command": "systemd-language-server",
@@ -37,6 +37,8 @@
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
 	"pylsp.plugins.pycodestyle.maxLineLength": 88, //matches with Ruff defaults
+	"pylsp.plugins.pycodestyle.enabled": false,
+	"pylsp.plugins.pyflakes.enabled": false,
 	"ruff.nativeServer": true,
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
@@ -47,13 +49,11 @@
 		"systemd": [ "systemd-analyze" ]
 	},
 	"diagnostic-languageserver.mergeConfig": true,
-	"diagnostic-languageserver.formatFiletypes": {
-	},
-	"diagnostic-languageserver.linters": {
-	},
+	"diagnostic-languageserver.formatFiletypes": {},
+	"diagnostic-languageserver.linters": {},
 	"snippets.ultisnips.pythonPrompt": false,
 	"pydocstring.formatter": "numpy",
-	"github-copilot.filetypes": [
-		""
-	],
+	"copilot.enable": false,
+	"prettier.useTabs": true,
+	"prettier.tabWidth": 4,
 }

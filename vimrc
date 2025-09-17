@@ -487,7 +487,7 @@ if exists(":CocInfo")
 	command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 	if !exists(':Copilot')
-		" But, only if not using copilot.vim
+		" if not using copilot.vim
 		function s:toggleCopilotSafe()
 			if index(map(CocAction('services'), 'v:val["id"]'), 'github-copilot') >= 0
 				"if `github-copilot` is in the list of services
@@ -495,6 +495,10 @@ if exists(":CocInfo")
 			elseif index(map(CocAction('services'), 'v:val["id"]'), 'copilot') >= 0
 				"if `copilot` is in the list of services
 				call CocAction('toggleService', 'copilot')
+			else
+				" if there's no copilot service we don't need
+				" the command
+				silent! delcommand CopilotToggle
 			endif
 		endfunction
 
