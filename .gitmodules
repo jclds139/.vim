@@ -63,3 +63,6 @@
 [submodule "pack/syntax/opt/copilot"]
 	path = pack/syntax/opt/copilot
 	url = https://github.com/github/copilot.vim
+[submodule "pack/basics/start/nvim-ghost"]
+	path = pack/basics/start/nvim-ghost
+	url = https://github.com/subnut/nvim-ghost.nvim
