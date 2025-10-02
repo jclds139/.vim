@@ -69,3 +69,6 @@
 [submodule "pack/basics/opt/doge"]
 	path = pack/basics/opt/doge
 	url = https://github.com/kkoomen/vim-doge
+[submodule "pack/syntax/start/github-actions"]
+	path = pack/syntax/start/github-actions
+	url = https://github.com/yasuhiroki/github-actions-yaml.vim.git

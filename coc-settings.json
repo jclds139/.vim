@@ -19,6 +19,7 @@
 		"markdown",
 		"org",
 		"restructuredtext",
+		"rst",
 		"rsweave",
 		"python",
 		"c",
@@ -27,33 +28,52 @@
 		"shellscript"
 	],
 	"ltex.dictionary": {
-		"en-US": [
-			":spell/en.utf-8.add"
-		]
+		"en-US": [":spell/en.utf-8.add"]
 	},
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.motherTongue": "en-US",
+	"texlab.latexFormatter": "latexindent",
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
-	"pylsp.plugins.pycodestyle.maxLineLength": 88, //matches with Ruff defaults
 	"pylsp.plugins.pycodestyle.enabled": false,
+	"pylsp.plugins.yapf.enabled": false,
+	"pylsp.plugins.mccabe.enabled": false,
 	"pylsp.plugins.pyflakes.enabled": false,
+	"pylsp.plugins.autopep8.enabled": false,
+	"pylsp.signature.formatter": "ruff",
 	"ruff.nativeServer": true,
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
-		"tiddlywiki": [ "proselint", "alex-text" ],
-		"tex": [ "proselint", "alex" ],
-		"latex": [ "proselint", "alex" ],
-		"markdown": [ "proselint", "alex" ],
-		"systemd": [ "systemd-analyze" ]
+		"tiddlywiki": ["proselint", "alex-text"],
+		"tex": ["proselint", "alex"],
+		"latex": ["proselint", "alex"],
+		"markdown": ["proselint", "alex"],
+		"systemd": ["systemd-analyze"],
+		"yaml.gha": ["actionlint"]
 	},
 	"diagnostic-languageserver.mergeConfig": true,
-	"diagnostic-languageserver.formatFiletypes": {},
-	"diagnostic-languageserver.linters": {},
+	"diagnostic-languageserver.formatFiletypes": {
+		"restructuredtext": ["rst-pandoc"],
+		"rst": ["rst-pandoc"],
+		"tex": ["tex-fmt"],
+		"latex": ["tex-fmt"],
+		"bib": ["tex-fmt"]
+	},
+	"diagnostic-languageserver.formatters": {
+		"rst-pandoc": {
+			"command": "pandoc",
+			"args": ["-f", "rst", "-t", "rst", "-s", "--columns=79"]
+		},
+		"tex-fmt": {
+			"command": "tex-fmt",
+			"args": ["--stdin"]
+		}
+	},
 	"snippets.ultisnips.pythonPrompt": false,
 	"pydocstring.formatter": "numpy",
 	"copilot.enable": false,
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,
+	"prettier.withNodeModules": true
 }

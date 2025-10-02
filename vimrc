@@ -12,6 +12,9 @@ set laststatus=2
 set confirm
 set backspace=2 "allow generous backspacing on all platforms
 set mouse=a "enable mouse by default
+
+let g:gha_completion = 0
+
 syntax on
 filetype plugin on
 
