@@ -48,8 +48,8 @@ let g:moonflyTerminalColors = v:false
 
 " Vimscript initialization file
 augroup moonflyCustom
-    autocmd!
-    autocmd ColorScheme moonfly highlight Normal guifg=#00c8ff
+	autocmd!
+	autocmd ColorScheme moonfly highlight Normal guifg=#00c8ff
 augroup END
 
 "PlantUML Compile Options
@@ -296,7 +296,8 @@ elseif has("nvim")
 	packadd treesitter
 	if exists(':TSUpdate')
 		"treesitter might be removed/unavailable on some platforms
-		runtime ts.lua
+		packadd treesitter-textobjects
+		lua require('ts')
 		silent TSUpdate
 	endif
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
@@ -402,7 +403,7 @@ if exists(":CocInfo")
 				\ "\<CR>"
 
 	inoremap <expr> <C-Right> coc#inline#visible() ? coc#inline#accept() : "\<C-Right>"
-	
+
 	inoremap <expr> <C-Left> coc#inline#visible() ? coc#inline#next() : "\<C-Left>"
 
 	function! CheckBackspace() abort
@@ -534,3 +535,4 @@ if exists(":CocInfo")
 endif
 
 silent! helptags ALL
+

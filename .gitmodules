@@ -72,3 +72,7 @@
 [submodule "pack/syntax/start/github-actions"]
 	path = pack/syntax/start/github-actions
 	url = https://github.com/yasuhiroki/github-actions-yaml.vim.git
+[submodule "pack/syntax/opt/treesitter-textobjects"]
+	path = pack/syntax/opt/treesitter-textobjects
+	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
+	branch = main

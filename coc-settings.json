@@ -2,12 +2,20 @@
 	"languageserver": {
 		"bash": {
 			"command": "bash-language-server",
-			"args": ["start"],
-			"filetypes": ["sh", "bash", "PKGBUILD"]
+			"args": [
+				"start"
+			],
+			"filetypes": [
+				"sh",
+				"bash",
+				"PKGBUILD"
+			]
 		},
 		"systemd-language-server": {
 			"command": "systemd-language-server",
-			"filetypes": ["systemd"]
+			"filetypes": [
+				"systemd"
+			]
 		}
 	},
 	"ltex.enabled": [
@@ -28,7 +36,9 @@
 		"shellscript"
 	],
 	"ltex.dictionary": {
-		"en-US": [":spell/en.utf-8.add"]
+		"en-US": [
+			":spell/en.utf-8.add"
+		]
 	},
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
@@ -45,29 +55,60 @@
 	"ruff.nativeServer": true,
 	"java.home": "/usr/lib/jvm/default/",
 	"diagnostic-languageserver.filetypes": {
-		"tiddlywiki": ["proselint", "alex-text"],
-		"tex": ["proselint", "alex"],
-		"latex": ["proselint", "alex"],
-		"markdown": ["proselint", "alex"],
-		"systemd": ["systemd-analyze"],
-		"yaml.gha": ["actionlint"]
+		"tiddlywiki": [
+			"proselint",
+			"alex-text"
+		],
+		"tex": [
+			"proselint",
+			"alex"
+		],
+		"latex": [
+			"proselint",
+			"alex"
+		],
+		"markdown": [
+			"proselint",
+			"alex"
+		],
+		"systemd": [
+			"systemd-analyze"
+		],
+		"yaml.gha": [
+			"actionlint"
+		]
 	},
 	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic-languageserver.formatFiletypes": {
-		"restructuredtext": ["rst-pandoc"],
-		"rst": ["rst-pandoc"],
-		"tex": ["tex-fmt"],
-		"latex": ["tex-fmt"],
-		"bib": ["tex-fmt"]
+		"restructuredtext": "rst-pandoc",
+		"rst": "rst-pandoc",
+		"tex": "tex-fmt",
+		"latex": "tex-fmt",
+		"bib": "tex-fmt",
+		"json": "prettier",
+		"css": "prettier",
+		"html": "prettier",
+		"xml": "prettier",
+		"yaml": "prettier",
+		"markdown": "prettier",
 	},
 	"diagnostic-languageserver.formatters": {
 		"rst-pandoc": {
 			"command": "pandoc",
-			"args": ["-f", "rst", "-t", "rst", "-s", "--columns=79"]
+			"args": [
+				"-f",
+				"rst",
+				"-t",
+				"rst",
+				"-s",
+				"--columns=79"
+			]
 		},
 		"tex-fmt": {
 			"command": "tex-fmt",
-			"args": ["--stdin"]
+			"args": [
+				"--stdin"
+			]
 		}
 	},
 	"snippets.ultisnips.pythonPrompt": false,
@@ -75,5 +116,6 @@
 	"copilot.enable": false,
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,
-	"prettier.withNodeModules": true
+	"prettier.withNodeModules": true,
+	"prettier.formatterPriority": -1
 }
