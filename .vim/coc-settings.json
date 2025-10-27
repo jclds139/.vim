@@ -1,0 +1,18 @@
+{
+	"Lua.addonManager.enable": true,
+	"Lua.completion.keywordSnippet": "Both",
+	"Lua.workspace.library": [
+		"/usr/share/nvim/runtime/lua",
+		"/usr/share/nvim/runtime/lua/vim",
+		"/usr/share/nvim/runtime/lua/vim/lsp",
+	],
+	"Lua.workspace.ignoreDir": [".vscode", ".git"],
+	"Lua.diagnostics.globals": ["vim"],
+	"Lua.runtime.path": [
+		"?.lua",
+		"?/init.lua",
+		"?/lua/?.lua",
+		"?.nvim/lua/?.lua"
+	],
+	"Lua.doc.privateName": ["m_*"],
+}

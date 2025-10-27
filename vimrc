@@ -253,9 +253,29 @@ if exists('g:started_by_firenvim')
 	set termguicolors
 endif
 
+" filetypes for nvim-ghost
 augroup nvim_ghost_user_autocommands
 	au User reddit.com,github.com,stackoverflow.com,slack.com,*.stackexchange.com set filetype=markdown linebreak spell
 	au User localhost:8080 set filetype=tiddlywiki linebreak spell
+augroup END
+
+"filetypes for vim-ghost
+function! s:GhostTextSetup()
+	let l:bufname=expand('%:t')
+	let l:markdown_site_pattern = 'ghost-git[a-z]\{3}\.com\|stack\(exc\|over\)\|slack.com\|reddit.com-'
+	let l:jupyter_site_pattern = 'ghost-co\(calc\|.*google.*\)\.com\|kaggle.*\.com-'
+	if l:bufname =~? l:markdown_site_pattern
+		set filetype=markdown linebreak spell
+	elseif l:bufname =~? l:jupyter_site_pattern
+		set filetype=python
+	elseif l:bufname =~? 'ghost-localhost:8080'
+		set filetype=tiddlywiki linebreak spell
+	endif
+endfunction
+
+augroup vim_ghost
+	au!
+	au User vim-ghost#connected call s:GhostTextSetup()
 augroup END
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
