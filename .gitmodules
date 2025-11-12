@@ -57,9 +57,6 @@
 [submodule "pack/syntax/start/vim-sleuth"]
 	path = pack/syntax/start/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
-[submodule "pack/syntax/opt/copilot"]
-	path = pack/syntax/opt/copilot
-	url = https://github.com/github/copilot.vim
 [submodule "pack/basics/opt/doge"]
 	path = pack/basics/opt/doge
 	url = https://github.com/kkoomen/vim-doge
