@@ -49,5 +49,8 @@ Session.vim
 # auto-generated tag files
 tags
 
+# local-only files
+local.vimrc
 spell/*.add.spl
 sessions/
+

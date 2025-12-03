@@ -2,22 +2,17 @@
 	"languageserver": {
 		"bash": {
 			"command": "bash-language-server",
-			"args": [
-				"start"
-			],
-			"filetypes": [
-				"sh",
-				"bash",
-				"PKGBUILD"
-			]
+			"args": ["start"],
+			"filetypes": ["sh", "bash", "PKGBUILD"]
 		},
 		"systemd-language-server": {
 			"command": "systemd-language-server",
-			"filetypes": [
-				"systemd"
-			]
+			"filetypes": ["systemd"]
 		}
 	},
+
+	"coc.preferences.formatOnType": true,
+
 	"ltex.enabled": [
 		"bibtex",
 		"context",
@@ -36,14 +31,13 @@
 		"shellscript"
 	],
 	"ltex.dictionary": {
-		"en-US": [
-			":spell/en.utf-8.add"
-		]
+		"en-US": [":spell/en.utf-8.add"]
 	},
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.motherTongue": "en-US",
 	"texlab.latexFormatter": "latexindent",
+
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
 	"pylsp.plugins.pycodestyle.enabled": false,
@@ -51,32 +45,32 @@
 	"pylsp.plugins.mccabe.enabled": false,
 	"pylsp.plugins.pyflakes.enabled": false,
 	"pylsp.plugins.autopep8.enabled": false,
+	"pylsp.plugins.black.enabled": false,
+	"pylsp.plugins.rope_completion.eager": true,
+	"pylsp.plugins.rope_autoimport.code_actions.enabled": true,
+	"pylsp.plugins.ruff.formatEnabled": false,
 	"pylsp.signature.formatter": "ruff",
 	"ruff.nativeServer": true,
+	"ruff.codeAction.fixViolation.enable": true,
+	"ruff.client.codeAction.showDocumantaion.enable": true,
+	"ruff.organizeImports": true,
+	"ruff.configurationPreference": "filesystemFirst",
+	"ruff.enableExperimentalFormatter": true,
+	"snippets.ultisnips.pythonPrompt": false,
+	"pydocstring.formatter": "numpy",
+	"[python]": {
+		"coc.preferences.formatterExtension": "@yaegassy/coc-ruff"
+	},
+
 	"java.home": "/usr/lib/jvm/default/",
+
 	"diagnostic-languageserver.filetypes": {
-		"tiddlywiki": [
-			"proselint",
-			"alex-text"
-		],
-		"tex": [
-			"proselint",
-			"alex"
-		],
-		"latex": [
-			"proselint",
-			"alex"
-		],
-		"markdown": [
-			"proselint",
-			"alex"
-		],
-		"systemd": [
-			"systemd-analyze"
-		],
-		"yaml.gha": [
-			"actionlint"
-		]
+		"tiddlywiki": ["proselint", "alex-text"],
+		"tex.text": ["proselint", "alex"],
+		"latex": ["proselint", "alex"],
+		"markdown": ["proselint", "alex"],
+		"systemd": ["systemd-analyze"],
+		"yaml.gha": ["actionlint"]
 	},
 	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic-languageserver.formatFiletypes": {
@@ -84,38 +78,31 @@
 		"rst": "rst-pandoc",
 		"tex": "tex-fmt",
 		"latex": "tex-fmt",
-		"bib": "tex-fmt",
-		"json": "prettier",
-		"css": "prettier",
-		"html": "prettier",
-		"xml": "prettier",
-		"yaml": "prettier",
-		"markdown": "prettier",
+		"bib": "tex-fmt"
 	},
 	"diagnostic-languageserver.formatters": {
 		"rst-pandoc": {
 			"command": "pandoc",
-			"args": [
-				"-f",
-				"rst",
-				"-t",
-				"rst",
-				"-s",
-				"--columns=79"
-			]
+			"args": ["-f", "rst", "-t", "rst", "-s", "--columns=79"]
 		},
 		"tex-fmt": {
 			"command": "tex-fmt",
-			"args": [
-				"--stdin"
-			]
+			"args": ["--stdin"]
 		}
 	},
-	"snippets.ultisnips.pythonPrompt": false,
-	"pydocstring.formatter": "numpy",
+
 	"copilot.enable": false,
+
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,
 	"prettier.withNodeModules": true,
-	"prettier.formatterPriority": -1
+	"prettier.formatterPriority": -5,
+	//don't override other formatters when available
+	"[json][yaml][html][javascript][markdown]": {
+		"coc.preferences.formatterExtension": "coc-prettier"
+	},
+
+	"rpc.showProblems": false,
+	"rpc.workspaceElapsedTime": true,
+	"rpc.suppressNotifications": false,
 }

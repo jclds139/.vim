@@ -80,11 +80,9 @@ if exists('g:started_by_firenvim')
 	packadd! firenvim
 endif
 
-
 "load local.vim if it exists, for local overrides
 runtime local.vimrc
 runtime local.vim
-
 
 if has('nvim')
 	"cut off the 'init.vim'
@@ -95,6 +93,16 @@ if has('nvim')
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 	if exists('g:vscode')
 		let g:coc_start_at_startup = v:false
+	endif
+
+	if exists('g:neovide')
+		let g:neovide_cursor_animation_length = 0.08
+		let g:neovide_cursor_short_animation_length = 0.04
+		let g:neovide_cursor_trail_size = 0.2
+		let g:neovide_cursor_animate_command_line = v:false
+
+		let g:neovide_cursor_vfx_mode = "sonicboom"
+
 	endif
 else
 	"cut off just 'vimrc
@@ -206,7 +214,7 @@ function NvimFont(height)
 		call rpcnotify(1, 'Gui', 'Font', 'Fantasque Sans Mono' . string(a:height) )
 		call rpcnotify(1, 'Gui', 'Tabline', 0)
 		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
-	else "for nvim-qt
+	else "for nvim-qt, neovide, etc.
 		exe 'set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
 	endif
 endfunction
@@ -314,6 +322,8 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 elseif has("nvim")
 	packadd sphinx.nvim
 	packadd treesitter
+	" packadd ghost-text
+	" lua require('ghost-config')
 	if exists(':TSUpdate')
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
@@ -357,13 +367,6 @@ endif
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
 vnoremap <F5> :<C-U>:w<CR>:silent make<CR
-
-"Copilot Config
-if exists(':Copilot')
-	autocmd VimEnter * Copilot disable
-	" disable by default, can be manually started later
-endif
-
 
 "extensions setup for CoC
 if exists(":CocInfo")
