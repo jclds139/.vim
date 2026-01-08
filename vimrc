@@ -101,8 +101,20 @@ if has('nvim')
 		let g:neovide_cursor_trail_size = 0.2
 		let g:neovide_cursor_animate_command_line = v:false
 
-		let g:neovide_cursor_vfx_mode = "sonicboom"
+		" let g:neovide_cursor_vfx_mode = "sonicboom"
 
+	endif
+
+	"add nvim-only plugins
+	packadd sphinx.nvim
+	packadd treesitter
+	" packadd ghost-text
+	" lua require('ghost-config')
+	if exists(':TSUpdate')
+		"treesitter might be removed/unavailable on some platforms
+		packadd treesitter-textobjects
+		lua require('ts')
+		silent TSUpdate
 	endif
 else
 	"cut off just 'vimrc
@@ -171,7 +183,7 @@ function AutoFontHeight()
 	endif
 
 	if type(l:dpi) == type(1.0) && l:dpi > 0
-		return 11+trunc((l:dpi-96)/20)
+		return 14+trunc((l:dpi-96)/20)
 	else
 		return 13
 	endif
@@ -214,7 +226,17 @@ function NvimFont(height)
 		call rpcnotify(1, 'Gui', 'Font', 'Fantasque Sans Mono' . string(a:height) )
 		call rpcnotify(1, 'Gui', 'Tabline', 0)
 		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
-	else "for nvim-qt, neovide, etc.
+	elseif exists("g:neovide")
+		exe 'set guifont=' .
+			\ 'Fantasque_Sans_Mono' .
+			\ ',Anonymous_Pro' . 
+			\ ',Consolas' . 
+			\ ',Monospace' . 
+			\ ',Courier_New' .
+			\ ',Courier' .
+			\ ':h' . string(a:height)
+
+	else "for nvim-qt
 		exe 'set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
 	endif
 endfunction
@@ -320,16 +342,6 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 	"from Win10 Creators (1703)+, it theoretically supports 24-bit color, and admits to 256 colors
 	colorscheme harlequin
 elseif has("nvim")
-	packadd sphinx.nvim
-	packadd treesitter
-	" packadd ghost-text
-	" lua require('ghost-config')
-	if exists(':TSUpdate')
-		"treesitter might be removed/unavailable on some platforms
-		packadd treesitter-textobjects
-		lua require('ts')
-		silent TSUpdate
-	endif
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
 		colorscheme moonfly
@@ -384,7 +396,9 @@ if exists(":CocInfo")
 				\ 'coc-marketplace']
 
 	let g:coc_filetype_map = {
-				\ 'arduino': 'cpp'
+				\ 'arduino': 'cpp',
+				\ 'tex.text': 'latex',
+				\ 'PKGBUILD': 'shellscript'
 				\ }
 
 	" load UltiSnips with CoC

@@ -19,6 +19,7 @@
 		"context.tex",
 		"html",
 		"latex",
+		"tex",
 		"markdown",
 		"org",
 		"restructuredtext",
@@ -36,7 +37,7 @@
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.motherTongue": "en-US",
-	"texlab.latexFormatter": "latexindent",
+	"texlab.latexFormatter": "tex-fmt",
 
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
@@ -50,6 +51,7 @@
 	"pylsp.plugins.rope_autoimport.code_actions.enabled": true,
 	"pylsp.plugins.ruff.formatEnabled": false,
 	"pylsp.signature.formatter": "ruff",
+	"pylsp.plugins.jedi_symbols.include_import_symbols": true,
 	"ruff.nativeServer": true,
 	"ruff.codeAction.fixViolation.enable": true,
 	"ruff.client.codeAction.showDocumantaion.enable": true,
@@ -70,25 +72,18 @@
 		"latex": ["proselint", "alex"],
 		"markdown": ["proselint", "alex"],
 		"systemd": ["systemd-analyze"],
-		"yaml.gha": ["actionlint"]
+		"yaml.gha": ["actionlint"],
 	},
 	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic-languageserver.formatFiletypes": {
 		"restructuredtext": "rst-pandoc",
 		"rst": "rst-pandoc",
-		"tex": "tex-fmt",
-		"latex": "tex-fmt",
-		"bib": "tex-fmt"
 	},
 	"diagnostic-languageserver.formatters": {
 		"rst-pandoc": {
 			"command": "pandoc",
 			"args": ["-f", "rst", "-t", "rst", "-s", "--columns=79"]
 		},
-		"tex-fmt": {
-			"command": "tex-fmt",
-			"args": ["--stdin"]
-		}
 	},
 
 	"copilot.enable": false,
