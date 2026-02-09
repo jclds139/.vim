@@ -68,7 +68,7 @@
 
 	"diagnostic-languageserver.filetypes": {
 		"tiddlywiki": ["proselint", "alex-text"],
-		"tex.text": ["proselint", "alex"],
+		"tex": ["proselint", "alex"],
 		"latex": ["proselint", "alex"],
 		"markdown": ["proselint", "alex"],
 		"systemd": ["systemd-analyze"],

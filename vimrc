@@ -108,8 +108,7 @@ if has('nvim')
 	"add nvim-only plugins
 	packadd sphinx.nvim
 	packadd treesitter
-	" packadd ghost-text
-	" lua require('ghost-config')
+	packadd nvim-ghost
 	if exists(':TSUpdate')
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
