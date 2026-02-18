@@ -383,6 +383,7 @@ vnoremap <F5> :<C-U>:w<CR>:silent make<CR
 if exists(":CocInfo")
 	" base set of extensions to install always
 	let g:coc_global_extensions = ['coc-json',
+				\ '@statiolake/coc-luals',
 				\ 'coc-snippets',
 				\ 'coc-tag',
 				\ 'coc-word',

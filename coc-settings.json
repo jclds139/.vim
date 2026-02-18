@@ -11,8 +11,6 @@
 		}
 	},
 
-	"coc.preferences.formatOnType": true,
-
 	"ltex.enabled": [
 		"bibtex",
 		"context",
@@ -20,6 +18,7 @@
 		"html",
 		"latex",
 		"tex",
+		"latex",
 		"markdown",
 		"org",
 		"restructuredtext",
@@ -32,12 +31,17 @@
 		"shellscript"
 	],
 	"ltex.dictionary": {
-		"en-US": [":spell/en.utf-8.add"]
+		"en-US": [":${userHome}/.vim/spell/en.utf-8.add"]
 	},
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
 	"ltex.additionalRules.motherTongue": "en-US",
+	"texlab.auxDirectory": "build/",
 	"texlab.latexFormatter": "tex-fmt",
+	"inlayHint.maximumLength": 20,
+	"[tex][latex]": {
+		"coc.preferences.formatterExtension": "coc-texlab"
+	},
 
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
@@ -93,7 +97,7 @@
 	"prettier.withNodeModules": true,
 	"prettier.formatterPriority": -5,
 	//don't override other formatters when available
-	"[json][yaml][html][javascript][markdown]": {
+	"[json][yaml][html][javascript][typescript][markdown]": {
 		"coc.preferences.formatterExtension": "coc-prettier"
 	},
 

@@ -51,6 +51,7 @@ tags
 
 # local-only files
 local.vimrc
+pack/local/*
 spell/*.add.spl
 sessions/
 
