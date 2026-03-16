@@ -1,12 +1,12 @@
 {
 	"languageserver": {
 		"bash": {
-			"command": "bash-language-server",
-			"args": ["start"],
+			"command": "npx",
+			"args": ["bash-language-server", "start"],
 			"filetypes": ["sh", "bash", "PKGBUILD"]
 		},
-		"systemd-language-server": {
-			"command": "systemd-language-server",
+		"systemd-ls": {
+			"command": "systemd-lsp",
 			"filetypes": ["systemd"]
 		}
 	},
@@ -38,6 +38,7 @@
 	"ltex.additionalRules.motherTongue": "en-US",
 	"texlab.auxDirectory": "build/",
 	"texlab.latexFormatter": "tex-fmt",
+	"texlab.build.args": ["-interaction=nonstopmode", "-synctex=1", "%f"],
 	"inlayHint.maximumLength": 20,
 	"[tex][latex]": {
 		"coc.preferences.formatterExtension": "coc-texlab"
