@@ -105,15 +105,14 @@ if has('nvim')
 
 	endif
 
-	"add nvim-only plugins
-	packadd sphinx.nvim
-	packadd treesitter
-	packadd nvim-ghost
+	"add nvim-only plugins, if present
+	silent! packadd sphinx.nvim
+	silent! packadd treesitter
+	silent! packadd nvim-ghost
 	if exists(':TSUpdate')
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
 		lua require('ts')
-		silent TSUpdate
 	endif
 else
 	"cut off just 'vimrc
