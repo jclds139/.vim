@@ -103,6 +103,7 @@ if has('nvim')
 
 	"add nvim-only plugins, if present
 	silent! packadd plenary.nvim
+	silent! packadd nui.nvim
 	silent! packadd sphinx.nvim
 	silent! packadd treesitter
 	silent! packadd nvim-ghost
@@ -121,6 +122,8 @@ if has('nvim')
 		" if todo-comments was loaded
 		lua require('todo-comments-setup')
 	endif
+	silent! packadd nvim-web-devicons
+	silent! packadd neo-tree.nvim
 
 else
 	"cut off just 'vimrc

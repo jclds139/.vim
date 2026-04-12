@@ -73,3 +73,12 @@
 [submodule "pack/basics/opt/plenary.nvim"]
 	path = pack/basics/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "pack/syntax/opt/nvim-web-devicons"]
+	path = pack/syntax/opt/nvim-web-devicons
+	url = https://github.com/nvim-tree/nvim-web-devicons
+[submodule "pack/basics/opt/neo-tree.nvim"]
+	path = pack/basics/opt/neo-tree.nvim
+	url = https://github.com/nvim-neo-tree/neo-tree.nvim
+[submodule "pack/basics/opt/nui.nvim"]
+	path = pack/basics/opt/nui.nvim
+	url = https://github.com/MunifTanjim/nui.nvim
