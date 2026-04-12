@@ -102,6 +102,7 @@ if has('nvim')
 	endif
 
 	"add nvim-only plugins, if present
+	silent! packadd plenary.nvim
 	silent! packadd sphinx.nvim
 	silent! packadd treesitter
 	silent! packadd nvim-ghost
@@ -114,6 +115,11 @@ if has('nvim')
 	if !empty(globpath(&runtimepath, 'doc/jupytext.txt'))
 		" if jupytext was loaded
 		lua require('jupytext-setup')
+	endif
+	silent! packadd todo-comments
+	if exists(':TodoQuickFix')
+		" if todo-comments was loaded
+		lua require('todo-comments-setup')
 	endif
 
 else

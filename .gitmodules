@@ -67,3 +67,9 @@
 [submodule "pack/basics/opt/jupytext"]
 	path = pack/basics/opt/jupytext
 	url = https://github.com/goerz/jupytext.nvim
+[submodule "pack/basics/opt/todo-comments"]
+	path = pack/basics/opt/todo-comments
+	url = https://github.com/folke/todo-comments.nvim.git
+[submodule "pack/basics/opt/plenary.nvim"]
+	path = pack/basics/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
