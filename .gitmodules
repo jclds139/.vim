@@ -32,9 +32,6 @@
 [submodule "matchit"]
 	path = pack/syntax/start/matchit
 	url = https://github.com/chrisbra/matchit
-[submodule "pack/basics/start/jupytext"]
-	path = pack/basics/start/jupytext
-	url = https://github.com/goerz/jupytext.vim.git
 [submodule "pack/basics/start/virtualenv"]
 	path = pack/basics/start/virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv
@@ -67,3 +64,6 @@
 	path = pack/syntax/opt/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
 	branch = main
+[submodule "pack/basics/opt/jupytext"]
+	path = pack/basics/opt/jupytext
+	url = https://github.com/goerz/jupytext.nvim

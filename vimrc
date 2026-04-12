@@ -56,10 +56,6 @@ augroup END
 let g:plantuml_set_makeprg=1
 let g:plantuml_executable_script="plantuml -tsvg"
 
-"jupytext for ipynb files
-let g:jupytext_fmt='py:percent'
-let g:jupytext_filetype_map = { 'py:percent': 'python' }
-
 "LaTeX Options, for when LaTeX suite is enabled
 let g:tex_flavor='latex'
 set shellslash
@@ -109,11 +105,17 @@ if has('nvim')
 	silent! packadd sphinx.nvim
 	silent! packadd treesitter
 	silent! packadd nvim-ghost
-	if exists(':TSUpdate')
+	if g:loaded_nvim_treesitter
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
 		lua require('ts')
 	endif
+	silent! packadd jupytext
+	if !empty(globpath(&runtimepath, 'doc/jupytext.txt'))
+		" if jupytext was loaded
+		lua require('jupytext-setup')
+	endif
+
 else
 	"cut off just 'vimrc
 	let &directory = expand('<sfile>:h:p') . '/swaps//'
@@ -227,9 +229,9 @@ function NvimFont(height)
 	elseif exists("g:neovide")
 		exe 'set guifont=' .
 			\ 'Fantasque_Sans_Mono' .
-			\ ',Anonymous_Pro' . 
-			\ ',Consolas' . 
-			\ ',Monospace' . 
+			\ ',Anonymous_Pro' .
+			\ ',Consolas' .
+			\ ',Monospace' .
 			\ ',Courier_New' .
 			\ ',Courier' .
 			\ ':h' . string(a:height)
