@@ -105,9 +105,9 @@ if has('nvim')
 	silent! packadd plenary.nvim
 	silent! packadd nui.nvim
 	silent! packadd sphinx.nvim
-	silent! packadd treesitter
+	silent! packadd tree-sitter-manager
 	silent! packadd nvim-ghost
-	if g:loaded_nvim_treesitter
+	if !empty(globpath(&runtimepath, 'lua/tree-sitter-manager'))
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
 		lua require('ts')

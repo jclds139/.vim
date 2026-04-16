@@ -41,10 +41,6 @@
 [submodule "pack/syntax/start/indent-guides"]
 	path = pack/syntax/opt/indent-guides
 	url = https://github.com/preservim/vim-indent-guides
-[submodule "pack/syntax/opt/treesitter"]
-	path = pack/syntax/opt/treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-	branch = main
 [submodule "pack/syntax/start/moonfly-colors"]
 	path = pack/syntax/start/moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors.git
@@ -82,3 +78,6 @@
 [submodule "pack/basics/opt/nui.nvim"]
 	path = pack/basics/opt/nui.nvim
 	url = https://github.com/MunifTanjim/nui.nvim
+[submodule "pack/syntax/opt/tree-sitter-manager"]
+	path = pack/syntax/opt/tree-sitter-manager
+	url = https://github.com/romus204/tree-sitter-manager.nvim

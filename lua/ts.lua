@@ -1,30 +1,6 @@
-require 'nvim-treesitter'.setup {
-	-- Directory to install parsers and queries to
-	install_dir = vim.fn.stdpath('data') .. '/site'
-}
-
-require 'nvim-treesitter'.install({
-	"vim",
-	"vimdoc",
-	"query",
-	"python",
-	"json",
-	"markdown",
-	"markdown_inline",
-	"bash",
-	"comment",
-})
-
-
-vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
-	callback = function()
-		local ts_lang = vim.treesitter.language.get_lang(vim.bo.filetype)
-		pcall(require 'nvim-treesitter'.install, ts_lang)    -- try to install the appropriate treesitter parser
-		if pcall(vim.treesitter.start, 0) then               -- try to enable highlighting
-			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- enable folding
-			vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" -- enable indenting
-		end
-	end,
+require('tree-sitter-manager').setup({
+	ensure_installed = { "vim", "vimdoc", "query", "python", "json", "markdown", "markdown_inline", "bash", "comment" },
+	auto_install = true,
 })
 
 -- configuration
@@ -207,5 +183,3 @@ vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, { expr = t
 vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, { expr = true })
 vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
 vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
-
-require 'nvim-treesitter'.update()
