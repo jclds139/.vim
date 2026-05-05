@@ -38,6 +38,7 @@
 	"ltex.additionalRules.motherTongue": "en-US",
 	"texlab.auxDirectory": "build/",
 	"texlab.latexFormatter": "tex-fmt",
+	"texlab.build.executable": "latexmk",
 	"texlab.build.args": ["-interaction=nonstopmode", "-synctex=1", "%f"],
 	"inlayHint.maximumLength": 20,
 	"[tex][latex]": {

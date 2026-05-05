@@ -13,6 +13,7 @@ require 'nvim-treesitter'.install({
 	"markdown_inline",
 	"bash",
 	"comment",
+	"lua",
 })
 
 

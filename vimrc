@@ -107,7 +107,7 @@ if has('nvim')
 	silent! packadd sphinx.nvim
 	silent! packadd treesitter
 	silent! packadd nvim-ghost
-	if g:loaded_nvim_treesitter
+	if exists('g:loaded_nvim_treesitter')
 		"treesitter might be removed/unavailable on some platforms
 		packadd treesitter-textobjects
 		lua require('ts')
