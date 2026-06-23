@@ -319,7 +319,11 @@ augroup END
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
 if has("gui_running") || exists('g:gui_running') "only for gui sessions
-	colorscheme moonfly
+	try
+		colorscheme moonfly
+	catch
+		colorscheme eldar
+	endtry
 
 	set guicursor=n-v-c:block-Cursor,i:ver15-Cursor,r:hor10-Cursor
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
@@ -353,12 +357,20 @@ elseif has("unix") && (system("cat /proc/version | grep -cE 3\.4.*Microsoft") ==
 elseif has("nvim")
 	if ($COLORTERM == "truecolor" || has("termguicolors"))
 		set termguicolors
-		colorscheme moonfly
+		try
+			colorscheme moonfly
+		catch
+			colorscheme eldar
+		endtry
 	else
 		colorscheme eldar
 	endif
 else
-	colorscheme moonfly
+	try
+		colorscheme moonfly
+	catch
+		colorscheme eldar
+	endtry
 endif
 
 "fixes for earlier (pre-8.0) versions of vim which don't have package management
