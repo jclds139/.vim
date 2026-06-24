@@ -41,32 +41,15 @@
 [submodule "pack/syntax/start/indent-guides"]
 	path = pack/syntax/opt/indent-guides
 	url = https://github.com/preservim/vim-indent-guides
-[submodule "pack/syntax/opt/treesitter"]
-	path = pack/syntax/opt/treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter.git
-	branch = main
-[submodule "pack/syntax/start/moonfly-colors"]
-	path = pack/syntax/start/moonfly-colors
-	url = https://github.com/bluz71/vim-moonfly-colors.git
 [submodule "pack/syntax/opt/sphinx.nvim"]
 	path = pack/syntax/opt/sphinx.nvim
 	url = https://github.com/stsewd/sphinx.nvim
 [submodule "pack/syntax/start/vim-sleuth"]
 	path = pack/syntax/start/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
-[submodule "pack/basics/opt/doge"]
-	path = pack/basics/opt/doge
-	url = https://github.com/kkoomen/vim-doge
 [submodule "pack/syntax/start/github-actions"]
 	path = pack/syntax/start/github-actions
 	url = https://github.com/yasuhiroki/github-actions-yaml.vim.git
-[submodule "pack/syntax/opt/treesitter-textobjects"]
-	path = pack/syntax/opt/treesitter-textobjects
-	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
-	branch = main
-[submodule "pack/basics/opt/jupytext"]
-	path = pack/basics/opt/jupytext
-	url = https://github.com/goerz/jupytext.nvim
 [submodule "pack/basics/opt/todo-comments"]
 	path = pack/basics/opt/todo-comments
 	url = https://github.com/folke/todo-comments.nvim.git
