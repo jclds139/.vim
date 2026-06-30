@@ -6,7 +6,7 @@
 			"filetypes": ["sh", "bash", "PKGBUILD"]
 		},
 		"systemd-ls": {
-			"command": "systemd-lsp",
+			"command": "systemd-language-server",
 			"filetypes": ["systemd"]
 		}
 	},
