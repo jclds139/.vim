@@ -76,6 +76,12 @@ if exists('g:started_by_firenvim')
 	packadd! firenvim
 endif
 
+"use ripgrep wherever possible
+if !(&grepprg =~ 'rg') && executable('rg')
+	set grepprg=rg\ --vimgrep\ -uu
+	set grepformat=%f:%l:%c:%m
+endif
+
 "load local.vim if it exists, for local overrides
 runtime local.vimrc
 runtime local.vim
