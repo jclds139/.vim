@@ -89,6 +89,9 @@ if has('nvim')
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 	if exists('g:vscode')
 		let g:coc_start_at_startup = v:false
+	else
+		packadd copilot.vim
+		"load copilot for neovim, NOT vscode
 	endif
 
 	if exists('g:neovide')
@@ -391,8 +394,12 @@ elseif exists('g:vscode')
 	packadd matlab-syntax
 	let g:clipboard = g:vscode_clipboard
 else "for vim 8.0 and later
-	packloadall "it just takes one command to do all that, and a better job of it to boot
-	packadd tcomment "only needed for vanilla vim, not for nvim
+	packloadall
+	"it just takes one command to do all that, and a better job of it to boot
+	packadd tcomment
+	"only needed for vanilla vim, not for nvim
+	packadd copilot.vim
+	"used in both vim and neovim, but not vscode
 endif
 
 "F5 Compiling - especially handy for linting and PlantUML - but don't override
@@ -400,6 +407,19 @@ endif
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
 vnoremap <F5> :<C-U>:w<CR>:silent make<CR
+
+"config for copilot.vim
+if exists(":Copilot")
+	let g:copilot_no_tab_map = 1
+
+	imap <silent><script><expr> <M-Right> copilot#Accept("")
+	imap <silent> <M-C-Right> <Plug>(copilot-accept-word)
+	imap <silent> <M-Left> <Plug>(copilot-dismiss)
+	imap <silent> <M-Down> <Plug>(copilot-next)
+	imap <silent> <M-Up> <Plug>(copilot-previous)
+	
+	
+endif
 
 "extensions setup for CoC
 if exists(":CocInfo")

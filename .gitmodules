@@ -32,53 +32,56 @@
 [submodule "matchit"]
 	path = pack/syntax/start/matchit
 	url = https://github.com/chrisbra/matchit
-[submodule "pack/basics/start/virtualenv"]
+[submodule "virtualenv"]
 	path = pack/basics/start/virtualenv
 	url = https://github.com/jmcantrell/vim-virtualenv
-[submodule "pack/syntax/start/vim-snippets"]
+[submodule "vim-snippets"]
 	path = pack/syntax/opt/vim-snippets
 	url = https://github.com/honza/vim-snippets
-[submodule "pack/syntax/start/indent-guides"]
+[submodule "indent-guides"]
 	path = pack/syntax/opt/indent-guides
 	url = https://github.com/preservim/vim-indent-guides
-[submodule "pack/syntax/opt/treesitter"]
+[submodule "treesitter"]
 	path = pack/syntax/opt/treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter.git
 	branch = main
-[submodule "pack/syntax/start/moonfly-colors"]
+[submodule "moonfly-colors"]
 	path = pack/syntax/start/moonfly-colors
 	url = https://github.com/bluz71/vim-moonfly-colors.git
-[submodule "pack/syntax/opt/sphinx.nvim"]
+[submodule "sphinx.nvim"]
 	path = pack/syntax/opt/sphinx.nvim
 	url = https://github.com/stsewd/sphinx.nvim
-[submodule "pack/syntax/start/vim-sleuth"]
+[submodule "vim-sleuth"]
 	path = pack/syntax/start/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
-[submodule "pack/basics/opt/doge"]
+[submodule "doge"]
 	path = pack/basics/opt/doge
 	url = https://github.com/kkoomen/vim-doge
-[submodule "pack/syntax/start/github-actions"]
+[submodule "github-actions"]
 	path = pack/syntax/start/github-actions
 	url = https://github.com/yasuhiroki/github-actions-yaml.vim.git
-[submodule "pack/syntax/opt/treesitter-textobjects"]
+[submodule "treesitter-textobjects"]
 	path = pack/syntax/opt/treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects.git
 	branch = main
-[submodule "pack/basics/opt/jupytext"]
+[submodule "jupytext"]
 	path = pack/basics/opt/jupytext
 	url = https://github.com/goerz/jupytext.nvim
-[submodule "pack/basics/opt/todo-comments"]
+[submodule "todo-comments"]
 	path = pack/basics/opt/todo-comments
 	url = https://github.com/folke/todo-comments.nvim.git
-[submodule "pack/basics/opt/plenary.nvim"]
+[submodule "plenary.nvim"]
 	path = pack/basics/opt/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
-[submodule "pack/syntax/opt/nvim-web-devicons"]
+[submodule "nvim-web-devicons"]
 	path = pack/syntax/opt/nvim-web-devicons
 	url = https://github.com/nvim-tree/nvim-web-devicons
-[submodule "pack/basics/opt/neo-tree.nvim"]
+[submodule "neo-tree.nvim"]
 	path = pack/basics/opt/neo-tree.nvim
 	url = https://github.com/nvim-neo-tree/neo-tree.nvim
-[submodule "pack/basics/opt/nui.nvim"]
+[submodule "nui.nvim"]
 	path = pack/basics/opt/nui.nvim
 	url = https://github.com/MunifTanjim/nui.nvim
+[submodule "copilot.vim"]
+	path = pack/syntax/opt/copilot.vim
+	url = https://github.com/github/copilot.vim
