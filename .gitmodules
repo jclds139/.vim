@@ -55,9 +55,6 @@
 [submodule "pack/syntax/start/vim-sleuth"]
 	path = pack/syntax/start/vim-sleuth
 	url = https://github.com/tpope/vim-sleuth
-[submodule "doge"]
-	path = pack/basics/opt/doge
-	url = https://github.com/kkoomen/vim-doge
 [submodule "firenvim"]
 	path = pack/basics/opt/firenvim
 	url = https://github.com/glacambre/firenvim

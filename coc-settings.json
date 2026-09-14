@@ -2,15 +2,23 @@
 	"languageserver": {
 		"bash": {
 			"command": "npx",
-			"args": ["bash-language-server", "start"],
-			"filetypes": ["sh", "bash", "PKGBUILD"]
+			"args": [
+				"bash-language-server",
+				"start"
+			],
+			"filetypes": [
+				"sh",
+				"bash",
+				"PKGBUILD"
+			]
 		},
 		"systemd-ls": {
 			"command": "systemd-lsp",
-			"filetypes": ["systemd"]
+			"filetypes": [
+				"systemd"
+			]
 		}
 	},
-
 	"ltex.enabled": [
 		"bibtex",
 		"context",
@@ -31,7 +39,9 @@
 		"shellscript"
 	],
 	"ltex.dictionary": {
-		"en-US": [":${userHome}/.vim/spell/en.utf-8.add"]
+		"en-US": [
+			":${userHome}/.vim/spell/en.utf-8.add"
+		]
 	},
 	"ltex.languageToolHttpServerUri": "http://localhost:8081/",
 	"ltex.completionEnabled": true,
@@ -39,12 +49,15 @@
 	"texlab.auxDirectory": "build/",
 	"texlab.latexFormatter": "tex-fmt",
 	"texlab.build.executable": "latexmk",
-	"texlab.build.args": ["-interaction=nonstopmode", "-synctex=1", "%f"],
+	"texlab.build.args": [
+		"-interaction=nonstopmode",
+		"-synctex=1",
+		"%f"
+	],
 	"inlayHint.maximumLength": 20,
 	"[tex][latex]": {
 		"coc.preferences.formatterExtension": "coc-texlab"
 	},
-
 	"pylsp.disableProgressNotifications": false,
 	"pylsp.plugins.ruff.enabled": false,
 	"pylsp.plugins.pycodestyle.enabled": false,
@@ -69,31 +82,53 @@
 	"[python]": {
 		"coc.preferences.formatterExtension": "@yaegassy/coc-ruff"
 	},
-
 	"java.home": "/usr/lib/jvm/default/",
-
 	"diagnostic-languageserver.filetypes": {
-		"tiddlywiki": ["proselint", "alex-text"],
-		"tex": ["proselint", "alex"],
-		"latex": ["proselint", "alex"],
-		"markdown": ["proselint", "alex"],
-		"systemd": ["systemd-analyze"],
-		"yaml.gha": ["actionlint"],
+		"tiddlywiki": [
+			"proselint",
+			"alex-text"
+		],
+		"tex": [
+			"proselint",
+			"alex"
+		],
+		"latex": [
+			"proselint",
+			"alex"
+		],
+		"markdown": [
+			"proselint",
+			"alex"
+		],
+		"systemd": [
+			"systemd-analyze"
+		],
+		"yaml.gha": [
+			"actionlint"
+		],
 	},
 	"diagnostic-languageserver.mergeConfig": true,
 	"diagnostic-languageserver.formatFiletypes": {
 		"restructuredtext": "rst-pandoc",
 		"rst": "rst-pandoc",
+		"PKGBUILD": "shfmt",
+		"sh": "shfmt",
+		"bash": "shfmt",
 	},
 	"diagnostic-languageserver.formatters": {
 		"rst-pandoc": {
 			"command": "pandoc",
-			"args": ["-f", "rst", "-t", "rst", "-s", "--columns=79"]
+			"args": [
+				"-f",
+				"rst",
+				"-t",
+				"rst",
+				"-s",
+				"--columns=79"
+			]
 		},
 	},
-
 	"copilot.enable": false,
-
 	"prettier.useTabs": true,
 	"prettier.tabWidth": 4,
 	"prettier.withNodeModules": true,
@@ -102,8 +137,11 @@
 	"[json][yaml][html][javascript][typescript][markdown]": {
 		"coc.preferences.formatterExtension": "coc-prettier"
 	},
-
 	"rpc.showProblems": false,
 	"rpc.workspaceElapsedTime": true,
 	"rpc.suppressNotifications": false,
+	"powershell.integratedConsole.showOnStartup": false,
+	"json.schemaDownload.trustedDomains": {
+		"https://www.schemastore.org": true
+	}
 }
