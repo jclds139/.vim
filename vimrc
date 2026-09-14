@@ -96,8 +96,8 @@ if has('nvim')
 	if exists('g:vscode')
 		let g:coc_start_at_startup = v:false
 	else
-		packadd copilot.vim
-		"load copilot for neovim, NOT vscode
+		" packadd copilot.vim
+		" never autoload copilot, especially not in VSCode
 	endif
 
 	if exists('g:neovide')

@@ -86,3 +86,4 @@
 [submodule "copilot.vim"]
 	path = pack/syntax/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
+	branch = release
