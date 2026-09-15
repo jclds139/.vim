@@ -1,4 +1,11 @@
-local nvim_ts = require'nvim-treesitter'
+vim.cmd("silent! packadd treesitter")
+
+local success, nvim_ts = pcall(require, 'nvim-treesitter')
+
+if not success then
+	goto skip
+end
+
 nvim_ts.setup {
 	-- Directory to install parsers and queries to
 	install_dir = vim.fn.stdpath('data') .. '/site'
@@ -32,7 +39,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		local ts_lang = vim.treesitter.language.get_lang(vim.bo.filetype)
 		if TS_SUPPORTED[ts_lang] then
-			pcall(nvim_ts.install, ts_lang)    -- try to install the appropriate treesitter parser
+			pcall(nvim_ts.install, ts_lang)              -- try to install the appropriate treesitter parser
 		end
 		if pcall(vim.treesitter.start, 0) then               -- try to enable highlighting
 			vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- enable folding
@@ -42,7 +49,15 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "BufWinEnter" }, {
 })
 
 -- configuration
-require("nvim-treesitter-textobjects").setup {
+vim.cmd("packadd! treesitter-textobjects")
+local ts_textobj
+success, ts_textobj = pcall(require, "nvim-treesitter-textobjects")
+
+if not success then
+	goto skip
+end
+
+ts_textobj.setup {
 	select = {
 		-- Automatically jump forward to textobj, similar to targets.vim
 		lookahead = true,
@@ -223,3 +238,5 @@ vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = t
 vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
 
 nvim_ts.update()
+
+::skip:: -- marker for skipping the rest of the script

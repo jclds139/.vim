@@ -27,6 +27,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#virtualenv#ft = ['python', 'toml']
 let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#searchcount#enabled = 0
 
@@ -95,9 +96,6 @@ if has('nvim')
 	set guicursor+=a:blinkwait400-blinkon600-blinkoff400,v:blinkoff0
 	if exists('g:vscode')
 		let g:coc_start_at_startup = v:false
-	else
-		" packadd copilot.vim
-		" never autoload copilot, especially not in VSCode
 	endif
 
 	if exists('g:neovide')
@@ -114,23 +112,9 @@ if has('nvim')
 	silent! packadd plenary.nvim
 	silent! packadd nui.nvim
 	silent! packadd sphinx.nvim
-	silent! packadd treesitter
 	silent! packadd nvim-ghost
-	if exists('g:loaded_nvim_treesitter')
-		"treesitter might be removed/unavailable on some platforms
-		packadd treesitter-textobjects
-		lua require('ts')
-	endif
-	silent! packadd jupytext
-	if !empty(globpath(&runtimepath, 'doc/jupytext.txt'))
-		" if jupytext was loaded
-		lua require('jupytext-setup')
-	endif
-	silent! packadd todo-comments
-	if exists(':TodoQuickFix')
-		" if todo-comments was loaded
-		lua require('todo-comments-setup')
-	endif
+	lua require('ts')
+	lua require('jupytext-setup')
 	silent! packadd nvim-web-devicons
 	silent! packadd neo-tree.nvim
 
@@ -246,13 +230,13 @@ function NvimFont(height)
 		call rpcnotify(1, 'Gui', 'Popupmenu', 0)
 	elseif exists("g:neovide")
 		exe 'set guifont=' .
-			\ 'Fantasque_Sans_Mono' .
-			\ ',Anonymous_Pro' .
-			\ ',Consolas' .
-			\ ',Monospace' .
-			\ ',Courier_New' .
-			\ ',Courier' .
-			\ ':h' . string(a:height)
+					\ 'Fantasque_Sans_Mono' .
+					\ ',Anonymous_Pro' .
+					\ ',Consolas' .
+					\ ',Monospace' .
+					\ ',Courier_New' .
+					\ ',Courier' .
+					\ ':h' . string(a:height)
 
 	else "for nvim-qt
 		exe 'set guifont=Fantasque\ Sans\ Mono:h' . string(a:height)
@@ -290,7 +274,7 @@ if exists('g:started_by_firenvim')
 		elseif l:bufname =~? 'localhost'
 			set filetype=tiddlywiki linebreak spell
 		endif
-		endfunction
+	endfunction
 
 	autocmd BufReadPost,BufNewFile * call FireNvimFT()
 
@@ -404,8 +388,7 @@ else "for vim 8.0 and later
 	"it just takes one command to do all that, and a better job of it to boot
 	packadd tcomment
 	"only needed for vanilla vim, not for nvim
-	packadd copilot.vim
-	"used in both vim and neovim, but not vscode
+	" copilot.vim would be loaded here for vim and neovim, but shouldn't be autoloaded
 endif
 
 "F5 Compiling - especially handy for linting and PlantUML - but don't override
@@ -572,7 +555,7 @@ if exists(":CocInfo")
 	" Add `:Fold` command to fold current buffer.
 	command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
-	" Add `:OR` command for organize imports of the current buffer.
+		" Add `:OR` command for organize imports of the current buffer.
 	command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
 	if !exists(':Copilot')
@@ -595,27 +578,27 @@ if exists(":CocInfo")
 		command! -nargs=0 CopilotToggle call s:toggleCopilotSafe()
 	endif
 
-	" Add (Neo)Vim's native statusline support.
-	" NOTE: Please see `:h coc-status` for integrations with external plugins that
-	" provide custom statusline: lightline.vim, vim-airline.
-	" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+		" Add (Neo)Vim's native statusline support.
+		" NOTE: Please see `:h coc-status` for integrations with external plugins that
+		" provide custom statusline: lightline.vim, vim-airline.
+		" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-	" Mappings for CoCList
-	" Show all diagnostics.
+		" Mappings for CoCList
+		" Show all diagnostics.
 	nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-	" Manage extensions.
+		" Manage extensions.
 	nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-	" Show commands.
+		" Show commands.
 	nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-	" Find symbol of current document.
+		" Find symbol of current document.
 	nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-	" Search workspace symbols.
+		" Search workspace symbols.
 	nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-	" Do default action for next item.
+		" Do default action for next item.
 	nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-	" Do default action for previous item.
+		" Do default action for previous item.
 	nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-	" Resume latest coc list.
+		" Resume latest coc list.
 	nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 endif
 
