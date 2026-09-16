@@ -71,19 +71,16 @@
 [submodule "todo-comments"]
 	path = pack/basics/opt/todo-comments
 	url = https://github.com/folke/todo-comments.nvim.git
-[submodule "plenary.nvim"]
-	path = pack/basics/opt/plenary.nvim
-	url = https://github.com/nvim-lua/plenary.nvim
 [submodule "nvim-web-devicons"]
 	path = pack/syntax/opt/nvim-web-devicons
 	url = https://github.com/nvim-tree/nvim-web-devicons
-[submodule "neo-tree.nvim"]
-	path = pack/basics/opt/neo-tree.nvim
-	url = https://github.com/nvim-neo-tree/neo-tree.nvim
-[submodule "nui.nvim"]
-	path = pack/basics/opt/nui.nvim
-	url = https://github.com/MunifTanjim/nui.nvim
 [submodule "copilot.vim"]
 	path = pack/syntax/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
 	branch = release
+[submodule "nvim-tree"]
+	path = pack/basics/opt/nvim-tree
+	url = https://github.com/nvim-tree/nvim-tree.lua
+[submodule "fzf-lua"]
+	path = pack/basics/opt/fzf-lua
+	url = https://github.com/ibhagwan/fzf-lua

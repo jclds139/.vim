@@ -4,7 +4,7 @@ WORKDIR="$(dirname "$(realpath "$0")")"
 
 TAG_MODULES=(
 	"firenvim"
-	"neo-tree.nvim"
+	"nvim-tree"
 )
 
 pushd "$WORKDIR" || exit 1

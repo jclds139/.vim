@@ -105,18 +105,18 @@ if has('nvim')
 		let g:neovide_cursor_animate_command_line = v:false
 
 		" let g:neovide_cursor_vfx_mode = "sonicboom"
+		set belloff=all 
 
 	endif
 
 	"add nvim-only plugins, if present
-	silent! packadd plenary.nvim
-	silent! packadd nui.nvim
 	silent! packadd sphinx.nvim
 	silent! packadd nvim-ghost
+	lua require('fzf-config')
+	silent! packadd todo-comments
+	lua require('tree-setup')
 	lua require('ts')
 	lua require('jupytext-setup')
-	silent! packadd nvim-web-devicons
-	silent! packadd neo-tree.nvim
 
 else
 	"cut off just 'vimrc
@@ -244,51 +244,16 @@ function NvimFont(height)
 endfunction
 
 if exists('g:started_by_firenvim')
-	let g:firenvim_config = {
-				\ 'globalSettings': {
-				\ 'alt': 'all',
-				\  },
-				\ 'localSettings': {
-				\ '.*': {
-				\ 'content': 'text',
-				\ 'priority': 0,
-				\ 'takeover': 'never',
-				\ 'selector': 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"], input',
-				\ 'cmdline': 'neovim'
-				\ },
-				\ '.*notion\.so.*': { 'priority': 9, 'takeover': 'never', },
-				\ '.*docs\.google\.com.*': { 'priority': 9, 'takeover': 'never', },
-				\ }
-				\ }
-
-	function FireNvimFT()
-		let l:markdown_site_pattern = 'git[a-z]\{3}\.com\|stack\(exc\|over\)\|slack.com\|reddit.com'
-		let l:jupyter_site_pattern = 'co\(calc\|.*google.*\)\.com\|kaggle.*\.com'
-
-		let l:bufname=expand('%:t')
-
-		if l:bufname =~? l:markdown_site_pattern
-			set filetype=markdown linebreak spell
-		elseif l:bufname =~? l:jupyter_site_pattern
-			set filetype=python
-		elseif l:bufname =~? 'localhost'
-			set filetype=tiddlywiki linebreak spell
-		endif
-	endfunction
-
-	autocmd BufReadPost,BufNewFile * call FireNvimFT()
-
-	autocmd UIEnter * call NvimFont(14)
-
-
+	lua require('firenvim-config')
 	let g:gui_running = v:true
 	set termguicolors
 endif
 
 " filetypes for nvim-ghost
 augroup nvim_ghost_user_autocommands
-	au User reddit.com,github.com,stackoverflow.com,slack.com,*.stackexchange.com set filetype=markdown linebreak spell
-	au User localhost:8080 set filetype=tiddlywiki linebreak spell
+	autocmd!
+	autocmd User reddit.com,github.com,stackoverflow.com,slack.com,*.stackexchange.com set filetype=markdown linebreak spell
+	autocmd User localhost:8080 set filetype=tiddlywiki linebreak spell
 augroup END
 
 "filetypes for vim-ghost
@@ -306,8 +271,8 @@ function! s:GhostTextSetup()
 endfunction
 
 augroup vim_ghost
-	au!
-	au User vim-ghost#connected call s:GhostTextSetup()
+	autocmd!
+	autocmd User vim-ghost#connected call s:GhostTextSetup()
 augroup END
 
 "sets the font based on OS (if its not Windows or Unix-compatible, dump to default)
