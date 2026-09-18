@@ -1,0 +1,21 @@
+[envs.neovim]
+channels = ["conda-forge"]
+# platform = "linux-64"
+
+[envs.neovim.exposed]
+ruff = "ruff"
+nvim = "nvim"
+tree-sitter = "tree-sitter"
+
+[envs.neovim.dependencies]
+nvim = ">=0.10"
+pynvim = ">=0.3"
+ruff = ">=0.14"
+nodejs = ">=20"
+bash-language-server = "*"
+tree-sitter-cli = "*"
+tombi = "*"
+prettier = "*"
+tex-fmt = "*"
+go-shfmt = ">=3"
+skim = "*"
