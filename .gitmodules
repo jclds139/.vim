@@ -78,9 +78,9 @@
 	path = pack/syntax/opt/copilot.vim
 	url = https://github.com/github/copilot.vim
 	branch = release
-[submodule "nvim-tree"]
-	path = pack/basics/opt/nvim-tree
-	url = https://github.com/nvim-tree/nvim-tree.lua
 [submodule "fzf-lua"]
 	path = pack/basics/opt/fzf-lua
 	url = https://github.com/ibhagwan/fzf-lua
+[submodule "netrw.nvim"]
+	path = pack/syntax/opt/netrw.nvim
+	url = https://github.com/prichrd/netrw.nvim

@@ -1,8 +1,10 @@
 vim.cmd("silent! packadd nvim-web-devicons")
-vim.cmd("silent! packadd nvim-tree.lua")
+vim.cmd("silent! packadd netrw.nvim")
 
-local success, nvim_tree = pcall(require, "nvim-tree")
+local success, netrw = pcall(require, "netrw")
 
 if success then
-	nvim_tree.setup()
+	netrw.setup({
+		use_devicons = true,
+	})
 end

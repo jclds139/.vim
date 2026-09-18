@@ -62,7 +62,9 @@ let g:tex_flavor='latex'
 set shellslash
 
 "netrw browsing
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 4 "open in previous window by default
+let g:netrw_preview = 1 " vertical splits by default
+let g:netrw_liststyle = 3 "tree listings by default
 
 "UltiSnips config
 let g:ultisnips_python_style = 'numpy'
