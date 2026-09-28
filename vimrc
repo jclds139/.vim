@@ -115,7 +115,8 @@ if has('nvim')
 	silent! packadd sphinx.nvim
 	silent! packadd nvim-ghost
 	lua require('fzf-config')
-	silent! packadd todo-comments
+	lua require('diffs-nvim')
+	lua require('todo-comments-setup')
 	lua require('tree-setup')
 	lua require('ts')
 	lua require('jupytext-setup')

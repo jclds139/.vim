@@ -84,3 +84,6 @@
 [submodule "netrw.nvim"]
 	path = pack/syntax/opt/netrw.nvim
 	url = https://github.com/prichrd/netrw.nvim
+[submodule "diffs.nvim"]
+	path = pack/syntax/opt/diffs.nvim
+	url = https://forge.barrettruth.com/barrettruth/diffs.nvim

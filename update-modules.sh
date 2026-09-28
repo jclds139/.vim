@@ -4,6 +4,7 @@ WORKDIR="$(dirname "$(realpath "$0")")"
 
 TAG_MODULES=(
 	"firenvim"
+	"diffs.nvim"
 )
 
 pushd "$WORKDIR" || exit 1
