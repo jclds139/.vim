@@ -6,6 +6,21 @@ if not success then
 	goto skip
 end
 
+local ts_locations = {
+	"/usr/lib/tree_sitter",
+	"/usr/lib/tree-sitter",
+	"/usr/lib/x86_64-linux-gnu/tree-sitter",
+	"/usr/lib/x86_64-linux-gnu/tree_sitter",
+	"/opt/homebrew/lib/tree-sitter",
+}
+
+for _, path in ipairs(ts_locations) do
+	if vim.uv.fs_stat(path .. "/") then
+		vim.opt.runtimepath:append(path)
+	end
+end
+
+
 nvim_ts.setup {
 	-- Directory to install parsers and queries to
 	install_dir = vim.fn.stdpath('data') .. '/site'
