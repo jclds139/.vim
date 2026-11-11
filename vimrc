@@ -81,7 +81,7 @@ endif
 
 "use ripgrep wherever possible
 if !(&grepprg =~ 'rg') && executable('rg')
-	set grepprg=rg\ --vimgrep\ -uu
+	set grepprg=rg\ --vimgrep
 	set grepformat=%f:%l:%c:%m
 endif
 

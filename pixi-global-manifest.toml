@@ -6,6 +6,7 @@ channels = ["conda-forge"]
 ruff = "ruff"
 nvim = "nvim"
 tree-sitter = "tree-sitter"
+mergiraf = "mergiraf"
 
 [envs.neovim.dependencies]
 nvim = ">=0.10"
@@ -19,3 +20,5 @@ prettier = "*"
 tex-fmt = "*"
 go-shfmt = ">=3"
 skim = "*"
+difftastic = "*"
+mergiraf = "*"

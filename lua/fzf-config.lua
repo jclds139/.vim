@@ -7,7 +7,7 @@ if not success then
 	goto skip
 end
 
-fzf_lua.setup({'ivy', 'skim'})
+fzf_lua.setup({ { 'ivy', 'skim' } })
 
 fzf_lua.register_ui_select()
 
